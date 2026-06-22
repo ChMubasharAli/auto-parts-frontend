@@ -391,12 +391,12 @@ export const PublicLayout = () => {
           </div>
 
           {/* Bottom Bar */}
-          <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <p className="text-sm text-white/40 text-center sm:text-left">
               © {new Date().getFullYear()} West Main Tire & Lube. All rights
               reserved.
             </p>
-            <div className="flex items-center gap-4 text-sm text-white/40">
+            {/* <div className="flex items-center gap-4 text-sm text-white/40">
               <a href="#" className="hover:text-white/80 transition-colors">
                 Privacy Policy
               </a>
@@ -404,7 +404,7 @@ export const PublicLayout = () => {
               <a href="#" className="hover:text-white/80 transition-colors">
                 Terms of Service
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
       </footer>
