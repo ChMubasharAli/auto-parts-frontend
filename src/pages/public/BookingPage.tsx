@@ -1046,7 +1046,7 @@ export const BookingPage = () => {
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Button
                   onClick={() => navigate("/")}
-                  size="lg"
+                  size="md"
                   className="gap-2 cursor-pointer"
                 >
                   <MapPin size={18} /> Back to Home
@@ -1054,7 +1054,7 @@ export const BookingPage = () => {
                 <Button
                   variant="outline"
                   onClick={() => window.location.reload()}
-                  size="lg"
+                  size="md"
                   className="cursor-pointer"
                 >
                   Book Another

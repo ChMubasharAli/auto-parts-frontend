@@ -14,17 +14,105 @@ import {
 import { Button } from "../../components/ui/Button";
 
 const navLinks = [
-  { path: "/", label: "Home" },
+  { path: "/", label: "Dee Jay Auto" },
   { path: "/booking", label: "Book Appointment" },
-  { path: "/auto-parts", label: "Auto Parts" },
+  { path: "/auto-parts", label: "WEST MAIN" },
 ];
+
+// Page-specific content configuration
+const pageConfig: Record<
+  string,
+  {
+    topBar: {
+      phone: string;
+      address: string;
+      hours: string;
+    };
+    footer: {
+      brandName: string;
+      tagline: string;
+      description: string;
+      address: string;
+      phone: string;
+      hours: string;
+    };
+  }
+> = {
+  "/": {
+    topBar: {
+      phone: "(859) 289-2208",
+      address: "328 W Main St, Carlisle, KY 40311",
+      hours: "Mon–Sat: 7:00 AM – 5:30 PM",
+    },
+    footer: {
+      brandName: "Dee Jay Auto Parts",
+      tagline: "& Hardware",
+      description:
+        "Your local one-stop shop since 1955. Auto parts, hardware, plumbing supplies, hydraulic hoses, Echo power equipment, and pet feed.",
+      address: "328 W Main St\nCarlisle, KY 40311",
+      phone: "(859) 289-2208",
+      hours: "Mon–Sat: 7:00 AM – 5:30 PM\nSunday: Closed",
+    },
+  },
+  "/auto-parts": {
+    topBar: {
+      phone: "(859) 405-4083",
+      address: "346 W Main St, Carlisle, KY 40311",
+      hours: "Mon–Fri: 8:00 AM – 5:00 PM",
+    },
+    footer: {
+      brandName: "West Main",
+      tagline: "Tire & Lube",
+      description:
+        "Full Service Auto Shop that handles basic maintenance and repairs, including exhaust work. Opened in June 2025 with a combined 25+ years of experience.",
+      address: "346 W Main St\nCarlisle, KY 40311",
+      phone: "(859) 405-4083",
+      hours: "Mon–Fri: 8:00 AM – 5:00 PM\nSat–Sun: Closed",
+    },
+  },
+};
+
+// Default fallback config (Home page)
+const defaultConfig = pageConfig["/"];
 
 export const PublicLayout = () => {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  // Track the last non-booking page config to preserve on booking page
+  const [lastPageConfig, setLastPageConfig] = useState(defaultConfig);
+
   const isActive = (path: string) => location.pathname === path;
+
+  // Update lastPageConfig when navigating to a non-booking page
+  useEffect(() => {
+    if (location.pathname !== "/booking" && pageConfig[location.pathname]) {
+      setLastPageConfig(pageConfig[location.pathname]);
+    }
+  }, [location.pathname]);
+
+  // Determine which config to use:
+  // - If on a known page (home or auto-parts), use that page's config
+  // - If on booking (or any other unknown page), use the last preserved config
+  const currentConfig = pageConfig[location.pathname] || lastPageConfig;
+
+  // Determine logo text based on current or last known page
+  const getLogoText = () => {
+    if (location.pathname === "/auto-parts") {
+      return { main: "West Main", sub: "Tire & Lube" };
+    }
+    if (location.pathname === "/") {
+      return { main: "Dee Jay", sub: "Auto Parts & Hardware" };
+    }
+    // For booking or any other page, use last known page's logo
+    if (lastPageConfig.footer.brandName === "West Main") {
+      return { main: "West Main", sub: "Tire & Lube" };
+    }
+    return { main: "Dee Jay", sub: "Auto Parts & Hardware" };
+  };
+
+  const logoText = getLogoText();
 
   // Close mobile menu on route change
   useEffect(() => {
@@ -43,41 +131,31 @@ export const PublicLayout = () => {
   return (
     <div className="flex min-h-screen flex-col bg-surface-white">
       {/* ==========================================
-          TOP BAR — Matching Brand Colors
+          TOP BAR — Dynamic per page (preserved on booking)
           ========================================== */}
       <div className="hidden sm:block bg-brand-navy text-white/90 py-2">
         <div className="container-custom flex items-center justify-between">
           <div className="flex items-center gap-6 text-xs font-medium">
             <span className="flex items-center gap-1.5">
               <Phone className="h-3.5 w-3.5 text-brand-orange" />
-              (555) 123-4567
+              {currentConfig.topBar.phone}
             </span>
             <span className="flex items-center gap-1.5">
               <MapPin className="h-3.5 w-3.5 text-brand-orange" />
-              123 West Main St, Your City
+              {currentConfig.topBar.address}
             </span>
           </div>
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1.5 text-xs font-medium">
               <Clock className="h-3.5 w-3.5 text-brand-orange" />
-              Mon-Fri: 7:00 AM - 5:00 PM | Sat: 8:00 AM - 2:00 PM
+              {currentConfig.topBar.hours}
             </span>
-            {/* <div className="flex items-center gap-1">
-              {[1, 2, 3, 4, 5].map((i) => (
-                <Star
-                  key={i}
-                  className="h-3 w-3 text-brand-gold"
-                  fill="currentColor"
-                />
-              ))}
-              <span className="text-xs font-bold text-white ml-1">4.9</span>
-            </div> */}
           </div>
         </div>
       </div>
 
       {/* ==========================================
-          HEADER — Sticky with Blur Effect
+          HEADER — Sticky with Blur Effect (shown on all pages)
           ========================================== */}
       <header
         className={`sticky top-0 z-50 transition-all duration-300 ${
@@ -89,15 +167,12 @@ export const PublicLayout = () => {
         <div className="container-custom flex h-16 lg:h-20 items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
-            {/* <div className="w-10 h-10 lg:w-11 lg:h-11 rounded-xl bg-gradient-to-br from-brand-orange to-brand-gold flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
-              <Wrench className="h-5 w-5 lg:h-6 lg:w-6 text-white" />
-            </div> */}
             <div>
               <span className="font-heading font-black text-base lg:text-lg text-text-heading uppercase tracking-tight leading-none block">
-                West Main
+                {logoText.main}
               </span>
               <span className="text-[10px] lg:text-xs text-brand-orange font-black uppercase tracking-[0.2em]">
-                Tire & Lube
+                {logoText.sub}
               </span>
             </div>
           </Link>
@@ -120,26 +195,23 @@ export const PublicLayout = () => {
                 )}
               </Link>
             ))}
-            <div className="w-px h-6 bg-border-default mx-2" />
-            <Link
-              to="/admin/login"
-              className="text-sm font-bold uppercase tracking-wider text-text-muted hover:text-brand-orange transition-colors px-3 py-2"
-            >
-              Admin
-            </Link>
           </nav>
 
           {/* Mobile CTA + Menu Button */}
           <div className="flex items-center gap-3 lg:hidden">
-            <a href="tel:5551234567">
-              <Button size="sm" variant="gradient" className="gap-1.5">
+            <a href={`tel:${currentConfig.topBar.phone.replace(/\D/g, "")}`}>
+              <Button
+                size="sm"
+                variant="gradient"
+                className="gap-1.5 cursor-pointer"
+              >
                 <Phone className="h-4 w-4" />
                 <span className="hidden xs:inline">Call</span>
               </Button>
             </a>
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="w-10 h-10 rounded-xl border-2 border-border-default flex items-center justify-center text-text-heading hover:border-brand-orange hover:text-brand-orange transition-all"
+              className="w-10 h-10 rounded-xl border-2 border-border-default flex items-center justify-center text-text-heading hover:border-brand-orange hover:text-brand-orange transition-all cursor-pointer"
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? (
@@ -185,7 +257,7 @@ export const PublicLayout = () => {
               </div>
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="w-9 h-9 rounded-lg border border-border-default flex items-center justify-center hover:border-brand-orange transition-colors"
+                className="w-9 h-9 rounded-lg border border-border-default flex items-center justify-center hover:border-brand-orange transition-colors cursor-pointer"
               >
                 <X className="h-4 w-4" />
               </button>
@@ -212,25 +284,14 @@ export const PublicLayout = () => {
                   />
                 </Link>
               ))}
-
-              <div className="my-4 border-t border-border-default" />
-
-              <Link
-                to="/admin/login"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center justify-between p-4 rounded-2xl bg-surface-warm text-text-muted font-bold uppercase tracking-wider text-sm hover:bg-surface-gray transition-all"
-              >
-                <span>Admin Login</span>
-                <ChevronRight className="h-4 w-4" />
-              </Link>
             </nav>
 
             {/* Mobile Contact Info */}
             <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-border-default bg-surface-warm">
               <div className="space-y-2">
                 <a
-                  href="tel:5551234567"
-                  className="flex items-center gap-3 p-3 rounded-xl bg-white border border-border-default hover:border-brand-orange transition-all"
+                  href={`tel:${currentConfig.topBar.phone.replace(/\D/g, "")}`}
+                  className="flex items-center gap-3 p-3 rounded-xl bg-white border border-border-default hover:border-brand-orange transition-all cursor-pointer"
                 >
                   <div className="w-9 h-9 rounded-lg bg-brand-orange/10 flex items-center justify-center">
                     <Phone className="h-4 w-4 text-brand-orange" />
@@ -240,7 +301,7 @@ export const PublicLayout = () => {
                       Call Us
                     </div>
                     <div className="text-sm font-bold text-text-heading">
-                      (555) 123-4567
+                      {currentConfig.topBar.phone}
                     </div>
                   </div>
                 </a>
@@ -254,7 +315,7 @@ export const PublicLayout = () => {
                       Hours
                     </div>
                     <div className="text-xs font-bold text-text-heading">
-                      Mon-Fri: 7AM-5PM | Sat: 8AM-2PM
+                      {currentConfig.topBar.hours}
                     </div>
                   </div>
                 </div>
@@ -272,7 +333,7 @@ export const PublicLayout = () => {
       </main>
 
       {/* ==========================================
-          FOOTER — Matching Design System
+          FOOTER — Dynamic per page (preserved on booking)
           ========================================== */}
       <footer className="bg-brand-navy text-white relative overflow-hidden">
         {/* Background Decoration */}
@@ -284,34 +345,18 @@ export const PublicLayout = () => {
             {/* Brand Column */}
             <div>
               <Link to="/" className="flex items-center gap-3 mb-5">
-                <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-orange to-brand-gold flex items-center justify-center shadow-lg">
-                  <Wrench className="h-6 w-6 text-white" />
-                </div>
                 <div>
                   <span className="font-heading font-black text-lg text-white uppercase tracking-tight leading-none block">
-                    West Main
+                    {currentConfig.footer.brandName}
                   </span>
                   <span className="text-[10px] text-brand-orange font-black uppercase tracking-[0.2em]">
-                    Tire & Lube
+                    {currentConfig.footer.tagline}
                   </span>
                 </div>
               </Link>
               <p className="text-sm text-white/60 leading-relaxed max-w-sm mb-6">
-                Professional auto repair and maintenance services you can trust.
-                Family-owned since 1995.
+                {currentConfig.footer.description}
               </p>
-              {/* <div className="flex items-center gap-1">
-                {[1, 2, 3, 4, 5].map((i) => (
-                  <Star
-                    key={i}
-                    className="h-4 w-4 text-brand-gold"
-                    fill="currentColor"
-                  />
-                ))}
-                <span className="text-sm text-white/80 font-bold ml-2">
-                  4.9 Rating
-                </span>
-              </div> */}
             </div>
 
             {/* Quick Links */}
@@ -332,6 +377,16 @@ export const PublicLayout = () => {
                   </li>
                 ))}
               </ul>
+
+              <Link to="/admin/login">
+                <Button
+                  size="sm"
+                  variant="gradient"
+                  className="gap-2 mt-4 w-full sm:w-auto justify-center cursor-pointer text-base px-8"
+                >
+                  Admin
+                </Button>
+              </Link>
             </div>
 
             {/* Contact */}
@@ -348,10 +403,8 @@ export const PublicLayout = () => {
                     <div className="text-[10px] font-black text-white/40 uppercase tracking-wider mb-0.5">
                       Address
                     </div>
-                    <p className="text-sm text-white/80 font-medium">
-                      123 West Main Street
-                      <br />
-                      Your City, ST 12345
+                    <p className="text-sm text-white/80 font-medium whitespace-pre-line">
+                      {currentConfig.footer.address}
                     </p>
                   </div>
                 </li>
@@ -364,10 +417,10 @@ export const PublicLayout = () => {
                       Phone
                     </div>
                     <a
-                      href="tel:5551234567"
+                      href={`tel:${currentConfig.footer.phone.replace(/\D/g, "")}`}
                       className="text-sm text-white/80 font-medium hover:text-brand-orange transition-colors"
                     >
-                      (555) 123-4567
+                      {currentConfig.footer.phone}
                     </a>
                   </div>
                 </li>
@@ -379,10 +432,8 @@ export const PublicLayout = () => {
                     <div className="text-[10px] font-black text-white/40 uppercase tracking-wider mb-0.5">
                       Hours
                     </div>
-                    <p className="text-sm text-white/80 font-medium">
-                      Mon-Fri: 7AM - 5PM
-                      <br />
-                      Sat: 8AM - 2PM
+                    <p className="text-sm text-white/80 font-medium whitespace-pre-line">
+                      {currentConfig.footer.hours}
                     </p>
                   </div>
                 </li>
@@ -393,18 +444,9 @@ export const PublicLayout = () => {
           {/* Bottom Bar */}
           <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <p className="text-sm text-white/40 text-center sm:text-left">
-              © {new Date().getFullYear()} West Main Tire & Lube. All rights
-              reserved.
+              © {new Date().getFullYear()} {currentConfig.footer.brandName}{" "}
+              {currentConfig.footer.tagline}. All rights reserved.
             </p>
-            {/* <div className="flex items-center gap-4 text-sm text-white/40">
-              <a href="#" className="hover:text-white/80 transition-colors">
-                Privacy Policy
-              </a>
-              <span className="w-1 h-1 bg-white/20 rounded-full" />
-              <a href="#" className="hover:text-white/80 transition-colors">
-                Terms of Service
-              </a>
-            </div> */}
           </div>
         </div>
       </footer>

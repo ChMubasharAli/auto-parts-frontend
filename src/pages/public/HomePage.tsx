@@ -1,56 +1,112 @@
 import { Link } from "react-router-dom";
 import { useServices } from "../../hooks/useServices";
 import { Button } from "../../components/ui/Button";
-import { Card, CardContent } from "../../components/ui/Card";
-import { Badge } from "../../components/ui/Badge";
 import {
   Wrench,
-  Shield,
   Clock,
-  Award,
-  ChevronRight,
+  ArrowRight,
+  Star,
+  MapPin,
+  Phone,
   Car,
   Droplets,
   RotateCcw,
   Calculator,
-  MapPin,
-  Phone,
-  ArrowRight,
-  Star,
-  Users,
-  TrendingUp,
+  Hammer,
+  Droplet,
+  Fan,
+  Dog,
+  HeartHandshake,
+  Calendar,
+  Store,
   CheckCircle2,
+  Award,
+  BadgeCheck,
+  HardHat,
+  ChevronRight,
+  Quote,
+  Navigation,
+  Shield,
+  Sparkles,
+  ArrowDown,
 } from "lucide-react";
 
 const stats = [
-  { value: "28+", label: "Years Experience", icon: Clock },
-  { value: "50K+", label: "Happy Customers", icon: Users },
-  { value: "99%", label: "Satisfaction Rate", icon: Star },
-  { value: "15K+", label: "Services Done", icon: TrendingUp },
+  { value: "1955", label: "Serving Since", icon: Calendar },
+  { value: "70+", label: "Years of Trust", icon: Award },
+  { value: "Local", label: "Community Landmark", icon: Store },
+  { value: "1-Stop", label: "Shop for Everything", icon: CheckCircle2 },
 ];
 
 const features = [
   {
-    icon: Shield,
-    title: "ASE Certified Technicians",
+    icon: BadgeCheck,
+    title: "Exclusive AutoValue Dealer",
     description:
-      "Our master technicians hold the highest industry certifications with decades of combined experience working on all makes and models.",
-    image:
-      "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=800&auto=format&fit=crop",
-  },
-  {
-    icon: Clock,
-    title: "Same-Day Service Guarantee",
-    description:
-      "Most repairs and maintenance completed within hours, not days. Get back on the road fast with our efficient service bay.",
+      "As an exclusive AutoValue auto parts dealer, we provide premium quality parts backed by industry-leading warranties. From routine maintenance to major repairs, we have the parts you need.",
     image:
       "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=800&auto=format&fit=crop",
   },
   {
-    icon: Award,
-    title: "Lifetime Warranty Protection",
+    icon: HardHat,
+    title: "Hardware, Plumbing & More",
     description:
-      "We stand behind every repair with our comprehensive lifetime warranty on both parts and labor. Your peace of mind is guaranteed.",
+      "Beyond auto parts, we are your trusted source for household hardware, plumbing supplies, hot water heaters, and indoor/outdoor faucets. Supporting local farmers and homeowners with all their project needs.",
+    image:
+      "https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    icon: HeartHandshake,
+    title: "Custom Hydraulic Services",
+    description:
+      "Save yourself a trip out of town. We offer custom hydraulic hose fabrication and repairs right here in Carlisle. Fast turnaround, expert craftsmanship, and fair pricing.",
+    image:
+      "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=800&auto=format&fit=crop",
+  },
+];
+
+const productCategories = [
+  {
+    name: "Auto Parts",
+    icon: Car,
+    description:
+      "Exclusive AutoValue dealer. Quality parts for every make and model.",
+    highlight: "AutoValue",
+    image:
+      "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    name: "Hardware & Plumbing",
+    icon: Hammer,
+    description:
+      "Household hardware, plumbing supplies, hot water heaters & faucets.",
+    highlight: "Projects",
+    image:
+      "https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    name: "Hydraulic Hoses",
+    icon: Droplet,
+    description:
+      "Custom fabrication and repairs. No need to drive out of town.",
+    highlight: "Custom",
+    image:
+      "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    name: "Echo Power Equipment",
+    icon: Fan,
+    description:
+      "Weed eaters, blowers, mowers, and chainsaws. Exclusive Echo dealer.",
+    highlight: "Echo",
+    image:
+      "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    name: "Pet & Livestock Feed",
+    icon: Dog,
+    description: "Quality feed for your livestock and domestic pets.",
+    highlight: "Feed",
     image:
       "https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=800&auto=format&fit=crop",
   },
@@ -69,121 +125,167 @@ export const HomePage = () => {
   return (
     <div className="overflow-hidden">
       {/* ==========================================
-          HERO SECTION — Reference Style 4-Image Collage
+          HERO SECTION — Completely New Premium Design
           ========================================== */}
-      <section className="relative w-full bg-surface-white py-16 lg:py-24 px-6 md:px-12 flex items-center">
-        <div className="container-custom w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          {/* LEFT COLUMN: Content */}
-          <div className="lg:col-span-5 space-y-8">
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <span className="w-8 h-[2px] bg-brand-orange" />
-                <span className="text-brand-orange text-xs font-black uppercase tracking-[0.3em]">
-                  Trusted Auto Care Since 1995
-                </span>
+      <section className="relative w-full bg-surface-white overflow-hidden">
+        {/* Background Decorations */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-orange/[0.03] rounded-full blur-[100px] pointer-events-none -translate-y-1/4 translate-x-1/4" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-gold/[0.04] rounded-full blur-[80px] pointer-events-none translate-y-1/3 -translate-x-1/4" />
+
+        {/* Subtle Grid Pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.015]"
+          style={{
+            backgroundImage: `linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px)`,
+            backgroundSize: "60px 60px",
+          }}
+        />
+
+        <div className="container-custom relative z-10 pt-20 lg:pt-28 pb-16 lg:pb-24">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+            {/* LEFT: Content */}
+            <div className="lg:col-span-6 space-y-8 relative">
+              {/* Vertical Accent Line */}
+              <div className="absolute -left-6 top-0 bottom-0 w-1 bg-gradient-to-b from-brand-orange via-brand-gold to-transparent rounded-full hidden lg:block" />
+
+              <div className="space-y-6">
+                {/* Pill Badge */}
+
+                {/* Main Heading */}
+                <h1 className="font-heading   font-black text-4xl sm:text-5xl lg:text-6xl text-text-heading uppercase tracking-tight leading-[1.05]">
+                  Dee Jay Auto Parts{" "}
+                  <span className="text-gradient">& Hardware</span>
+                </h1>
+
+                {/* Subtitle */}
+                <p className="text-xl sm:text-2xl text-text-body/80 font-light normal-case tracking-normal">
+                  of Carlisle, Kentucky
+                </p>
+
+                {/* Description */}
+                <p className="text-base md:text-lg text-text-body/70 font-light leading-relaxed max-w-lg">
+                  Serving the Carlisle, KY community since 1955, Dee Jay is more
+                  than just a store—it is a local landmark where community
+                  members connect. From auto parts to hardware, plumbing to
+                  power equipment, we have everything you need under one roof.
+                </p>
               </div>
 
-              <h1 className="font-heading font-black text-4xl sm:text-5xl lg:text-6xl text-text-heading uppercase tracking-tight leading-[1.05] mb-5">
-                Expert Auto Care You Can{" "}
-                <span className="text-gradient">Trust</span>
-              </h1>
-
-              <p className="text-base md:text-lg text-text-body font-light leading-relaxed max-w-lg">
-                Professional repair and maintenance services that keep your
-                vehicle running at peak performance. Family-owned,
-                community-trusted.
-              </p>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
-              <Link to="/booking" className="w-full sm:w-fit">
-                <Button
-                  size="lg"
-                  variant="gradient"
-                  className="gap-2 w-full sm:w-auto justify-center"
-                >
-                  <Clock className="h-5 w-5" />
-                  Book Appointment
-                  <ArrowRight className="h-5 w-5" />
-                </Button>
-              </Link>
-              <Link to="/auto-parts" className="w-full sm:w-fit">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="w-full sm:w-auto justify-center gap-2 border-2 border-border-default text-text-heading hover:border-brand-orange hover:bg-surface-warm"
-                >
-                  Browse Parts
-                </Button>
-              </Link>
-            </div>
-          </div>
-
-          {/* MIDDLE: Empty Space — 1 Column Gap ✅ */}
-          <div className="hidden lg:block lg:col-span-1" />
-
-          {/* RIGHT COLUMN: 4-Image Collage (Reference Style) */}
-          <div className="lg:col-span-6 grid grid-cols-12 gap-4 relative items-center mx-auto lg:mx-0 w-full ">
-            {/* Top Left: Rounded Rectangle */}
-            <div className="col-span-6 aspect-[4/3] rounded-[32px] overflow-hidden bg-surface-gray border border-border-light shadow-md">
-              <img
-                src="/images/Dee-Jay-Auto-External.webp"
-                alt="Auto Service"
-                className="w-full h-full object-cover"
-              />
-            </div>
-
-            {/* Top Right: Rounded Rectangle */}
-            <div className="col-span-6 aspect-[4/3] rounded-[32px] overflow-hidden bg-surface-gray border border-border-light shadow-md">
-              <img
-                src="/images/IMG-6941.webp"
-                alt="Tire Service"
-                className="w-full h-full object-cover"
-              />
-            </div>
-
-            {/* Bottom Left: Circle with Ring */}
-            <div className="col-span-5 relative flex justify-center items-center">
-              <div className="absolute w-[110%] h-[110%] border-2 border-dashed border-brand-orange/30 rounded-full animate-[spin_40s_linear_infinite]" />
-              <div className="w-full aspect-square rounded-full overflow-hidden bg-surface-gray relative border border-border-light z-10 shadow-md">
-                <img
-                  src="/images/Dee-Jay-Internal-2.webp"
-                  alt="Mechanic"
-                  className="w-full h-full object-cover"
-                />
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 items-start">
+                <Link to="/booking">
+                  <Button
+                    size="md"
+                    variant="gradient"
+                    className="gap-2 w-full sm:w-auto justify-center cursor-pointer text-base px-8 "
+                  >
+                    <MapPin className="h-5 w-5" />
+                    Visit Us Today
+                    <ArrowRight className="h-5 w-5" />
+                  </Button>
+                </Link>
+                <Link to="/auto-parts">
+                  <Button
+                    size="md"
+                    variant="outline"
+                    className="w-full sm:w-auto justify-center gap-2 border-2 border-border-default text-text-heading hover:border-brand-orange hover:bg-surface-warm cursor-pointer text-base px-8"
+                  >
+                    <Store className="h-5 w-5" />
+                    Browse Our Store
+                  </Button>
+                </Link>
               </div>
             </div>
 
-            {/* Bottom Right: Large Rounded */}
-            <div className="col-span-7 aspect-[4/3] rounded-[40px] overflow-hidden bg-surface-gray border border-border-light shadow-md">
-              <img
-                src="/images/IMG-6942.webp"
-                alt="Car Detail"
-                className="w-full h-full object-cover"
-              />
+            {/* RIGHT: Image Composition */}
+            <div className="lg:col-span-6 relative">
+              <div className="relative w-full max-w-xl mx-auto lg:max-w-none lg:ml-auto">
+                {/* Main Large Image */}
+                <div className="relative z-10 rounded-[36px] overflow-hidden shadow-2xl shadow-brand-navy/10 aspect-[4/3] border border-border-light">
+                  <img
+                    src="/images/Dee-Jay-Auto-External.webp"
+                    alt="Dee Jay Auto Parts & Hardware Storefront"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+                {/* Floating Card — Bottom Left Overlap */}
+                <div className="absolute -bottom-8 -left-4 lg:-left-10 z-20 bg-white rounded-2xl p-5 shadow-xl border border-border-light/50 w-60">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-full bg-brand-orange/10 flex items-center justify-center text-brand-orange border-2 border-brand-orange/20">
+                      <Clock className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <div className="font-bold text-text-heading text-sm">
+                        Mon – Sat
+                      </div>
+                      <div className="text-xs text-text-muted">
+                        7:00 AM – 5:30 PM
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Circular Badge — Center Right */}
+                <div className="absolute top-1/2 -right-6 lg:-right-14 z-20 hidden sm:block">
+                  <div className="relative w-24 h-24 lg:w-28 lg:h-28">
+                    <div className="absolute inset-0 border-2 border-dashed border-brand-orange/30 rounded-full animate-[spin_30s_linear_infinite]" />
+                    <div className="absolute inset-2 bg-white rounded-full shadow-lg border border-border-light flex flex-col items-center justify-center">
+                      <span className="font-heading font-black text-xl lg:text-2xl text-brand-orange">
+                        70+
+                      </span>
+                      <span className="text-[9px] text-text-muted uppercase tracking-wider font-bold">
+                        Years
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+        </div>
+
+        {/* Bottom Wave Transition */}
+        <div className="absolute bottom-0 left-0 right-0 translate-y-[1px]">
+          <svg
+            viewBox="0 0 1440 80"
+            fill="none"
+            className="w-full"
+            preserveAspectRatio="none"
+          >
+            <path
+              d="M0 80V40C240 70 480 80 720 70C960 60 1200 30 1440 20V80H0Z"
+              fill="#FAFAF8"
+            />
+          </svg>
         </div>
       </section>
 
       {/* ==========================================
-          STATS STRIP
+          STATS STRIP — Sleek Minimal Ticker
           ========================================== */}
-      <section className="py-8 bg-surface-warm">
+      <section className="py-12 bg-surface-warm border-y border-border-light">
         <div className="container-custom">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0">
             {stats.map((stat, i) => {
               const Icon = stat.icon;
               return (
-                <div key={i} className="flex items-center gap-3 md:gap-4">
-                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-orange/10 to-brand-gold/10 flex items-center justify-center shrink-0">
+                <div
+                  key={i}
+                  className={`flex flex-col items-center text-center gap-3 ${
+                    i < stats.length - 1
+                      ? "md:border-r md:border-border-default"
+                      : ""
+                  }`}
+                >
+                  <div className="w-12 h-12 rounded-2xl bg-white border border-border-default shadow-sm flex items-center justify-center">
                     <Icon className="h-5 w-5 text-brand-orange" />
                   </div>
                   <div>
-                    <div className="text-xl md:text-2xl font-black text-text-heading leading-none">
+                    <div className="text-2xl md:text-3xl font-heading font-black text-text-heading leading-none">
                       {stat.value}
                     </div>
-                    <div className="text-[10px] md:text-xs text-text-muted uppercase tracking-wider font-medium mt-1">
+                    <div className="text-[10px] md:text-xs text-text-muted uppercase tracking-wider font-bold mt-1">
                       {stat.label}
                     </div>
                   </div>
@@ -195,11 +297,10 @@ export const HomePage = () => {
       </section>
 
       {/* ==========================================
-          POPULAR SERVICES — Clean Cards (No Image, No Hover Button)
+          POPULAR SERVICES — Dynamic from useServices Hook
           ========================================== */}
-      <section className="py-24 lg:py-32">
+      <section className="py-24 lg:py-32 bg-white">
         <div className="container-custom">
-          {/* Section Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 border-b border-border-light pb-8">
             <div className="max-w-xl">
               <div className="flex items-center gap-2 mb-3">
@@ -213,8 +314,8 @@ export const HomePage = () => {
               </h2>
             </div>
             <p className="text-text-muted text-sm max-w-xs font-light leading-relaxed border-l border-border-default pl-4">
-              Comprehensive auto repair and maintenance to keep your vehicle in
-              top condition.
+              Professional services to keep your vehicle and equipment running
+              at peak performance.
             </p>
           </div>
 
@@ -237,10 +338,8 @@ export const HomePage = () => {
                     key={service.id}
                     className="group relative bg-white border-2 border-border-default p-7 transition-all duration-500 hover:border-brand-orange hover:shadow-lg flex flex-col overflow-hidden rounded-[28px_12px]"
                   >
-                    {/* Top Accent Bar */}
                     <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-orange to-brand-gold transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
 
-                    {/* Icon & Number */}
                     <div className="flex items-center justify-between mb-6">
                       <div className="w-14 h-14 rounded-2xl bg-surface-warm flex items-center justify-center text-brand-orange group-hover:bg-brand-orange group-hover:text-white transition-all duration-300 shadow-sm">
                         {iconMap[service.name] || (
@@ -252,7 +351,6 @@ export const HomePage = () => {
                       </span>
                     </div>
 
-                    {/* Content */}
                     <div className="space-y-3 flex-1">
                       <span className="inline-block text-[10px] font-black text-brand-orange tracking-[0.2em] uppercase bg-brand-orange/10 px-3 py-1 rounded-full border border-brand-orange/20">
                         {service.category || "Service"}
@@ -268,7 +366,6 @@ export const HomePage = () => {
                       </p>
                     </div>
 
-                    {/* Footer — Price & Duration */}
                     <div className="mt-6 pt-5 border-t border-border-default group-hover:border-brand-orange/20 transition-colors">
                       <div className="flex items-center justify-between">
                         <div>
@@ -286,8 +383,7 @@ export const HomePage = () => {
                       </div>
                     </div>
 
-                    {/* Hover Arrow (Subtle) */}
-                    <div className="mt-4 flex items-center gap-1.5 text-brand-orange text-[10px] font-black uppercase tracking-widest transition-all duration-500 opacity-0 transform translate-x-[-10px] group-hover:opacity-100 group-hover:translate-x-0">
+                    <div className="mt-4 flex items-center gap-1.5 text-brand-orange text-[10px] font-black uppercase tracking-widest transition-all duration-500 opacity-0 transform translate-x-[-10px] group-hover:opacity-100 group-hover:translate-x-0 cursor-pointer">
                       <span>View Details</span>
                       <ArrowRight size={12} strokeWidth={3} />
                     </div>
@@ -296,10 +392,9 @@ export const HomePage = () => {
             </div>
           )}
 
-          {/* View All Link */}
           <div className="mt-12 text-center">
             <Link to="/booking">
-              <Button variant="outline" className="gap-2">
+              <Button variant="outline" className="gap-2 cursor-pointer">
                 View All Services
                 <ArrowRight className="h-4 w-4" />
               </Button>
@@ -309,62 +404,216 @@ export const HomePage = () => {
       </section>
 
       {/* ==========================================
-          WHY CHOOSE US — FIXED: Light Background, Dark Text
+          PRODUCT SHOWCASE — Asymmetric Mosaic Grid
           ========================================== */}
-      <section className="py-24 lg:py-32 bg-surface-white relative overflow-hidden">
-        {/* Subtle Background Decoration */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-brand-orange/5 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-gold/5 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="container-custom relative z-10">
-          {/* Header */}
-          <div className="text-center max-w-2xl mx-auto mb-16 lg:mb-20">
-            <div className="flex items-center justify-center gap-2 mb-4">
+      <section className="py-24 lg:py-32 bg-surface-warm">
+        <div className="container-custom">
+          <div className="max-w-2xl mb-16 lg:mb-20">
+            <div className="flex items-center gap-2 mb-4">
               <span className="w-8 h-[2px] bg-brand-orange" />
               <span className="text-brand-orange text-xs font-black uppercase tracking-[0.3em]">
-                Why Choose Us
+                What We Carry
               </span>
-              <span className="w-8 h-[2px] bg-brand-orange" />
             </div>
             <h2 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-text-heading uppercase tracking-tight leading-[1.1] mb-5">
-              The West Main <span className="text-gradient">Difference</span>
+              Everything You Need,{" "}
+              <span className="text-gradient">All in One Place</span>
             </h2>
             <p className="text-text-body text-lg leading-relaxed">
-              Three decades of excellence, thousands of satisfied customers, and
-              an unwavering commitment to your safety.
+              From auto parts to power equipment, hardware to pet feed—we are
+              your true one-stop shop. No need to drive out of town.
             </p>
           </div>
 
-          {/* Features Grid */}
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-5">
+            <div className="lg:col-span-7 group relative rounded-[32px] overflow-hidden min-h-[320px] lg:min-h-[400px] cursor-pointer">
+              <img
+                src={productCategories[0].image}
+                alt={productCategories[0].name}
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/40 to-transparent" />
+              <div className="absolute inset-0 p-8 flex flex-col justify-end">
+                <div className="w-12 h-12 rounded-xl bg-brand-orange flex items-center justify-center text-white mb-4 shadow-lg">
+                  <Car className="h-6 w-6" />
+                </div>
+                <span className="inline-block text-[10px] font-black text-brand-orange tracking-[0.2em] uppercase bg-white/20 px-3 py-1 rounded-full backdrop-blur-sm border border-white/20 mb-3 w-fit">
+                  {productCategories[0].highlight}
+                </span>
+                <h3 className="font-heading font-black text-2xl lg:text-3xl text-white uppercase tracking-wide mb-2">
+                  {productCategories[0].name}
+                </h3>
+                <p className="text-white/70 text-sm leading-relaxed max-w-md">
+                  {productCategories[0].description}
+                </p>
+              </div>
+            </div>
+
+            <div className="lg:col-span-5 group relative rounded-[32px] overflow-hidden min-h-[320px] lg:min-h-[400px] cursor-pointer">
+              <img
+                src={productCategories[1].image}
+                alt={productCategories[1].name}
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+              <div className="absolute inset-0 p-8 flex flex-col justify-end">
+                <div className="w-12 h-12 rounded-xl bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white mb-4">
+                  <Hammer className="h-6 w-6" />
+                </div>
+                <span className="inline-block text-[10px] font-black text-brand-orange tracking-[0.2em] uppercase bg-brand-orange/20 px-3 py-1 rounded-full border border-brand-orange/30 mb-3 w-fit">
+                  {productCategories[1].highlight}
+                </span>
+                <h3 className="font-heading font-black text-2xl text-white uppercase tracking-wide mb-2">
+                  {productCategories[1].name}
+                </h3>
+                <p className="text-white/70 text-sm leading-relaxed">
+                  {productCategories[1].description}
+                </p>
+              </div>
+            </div>
+
+            <div className="lg:col-span-4 group relative rounded-[24px] overflow-hidden min-h-[260px] cursor-pointer">
+              <img
+                src={productCategories[2].image}
+                alt={productCategories[2].name}
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/85 via-brand-navy/30 to-transparent" />
+              <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                <div className="w-10 h-10 rounded-lg bg-brand-orange/90 flex items-center justify-center text-white mb-3">
+                  <Droplet className="h-5 w-5" />
+                </div>
+                <h3 className="font-heading font-black text-lg text-white uppercase tracking-wide mb-1">
+                  {productCategories[2].name}
+                </h3>
+                <p className="text-white/70 text-xs leading-relaxed">
+                  {productCategories[2].description}
+                </p>
+              </div>
+            </div>
+
+            <div className="lg:col-span-4 group relative rounded-[24px] overflow-hidden min-h-[260px] cursor-pointer">
+              <img
+                src={productCategories[3].image}
+                alt={productCategories[3].name}
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                <div className="w-10 h-10 rounded-lg bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white mb-3">
+                  <Fan className="h-5 w-5" />
+                </div>
+                <h3 className="font-heading font-black text-lg text-white uppercase tracking-wide mb-1">
+                  {productCategories[3].name}
+                </h3>
+                <p className="text-white/70 text-xs leading-relaxed">
+                  {productCategories[3].description}
+                </p>
+              </div>
+            </div>
+
+            <div className="lg:col-span-4 group relative rounded-[24px] overflow-hidden min-h-[260px] cursor-pointer">
+              <img
+                src={productCategories[4].image}
+                alt={productCategories[4].name}
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/85 via-brand-navy/30 to-transparent" />
+              <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                <div className="w-10 h-10 rounded-lg bg-brand-orange/90 flex items-center justify-center text-white mb-3">
+                  <Dog className="h-5 w-5" />
+                </div>
+                <h3 className="font-heading font-black text-lg text-white uppercase tracking-wide mb-1">
+                  {productCategories[4].name}
+                </h3>
+                <p className="text-white/70 text-xs leading-relaxed">
+                  {productCategories[4].description}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ==========================================
+          WHY CHOOSE US — Zigzag Editorial Layout
+          ========================================== */}
+      <section className="py-24 lg:py-32 bg-surface-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-orange/5 rounded-full blur-3xl pointer-events-none -translate-y-1/2 translate-x-1/4" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-gold/5 rounded-full blur-3xl pointer-events-none translate-y-1/2 -translate-x-1/4" />
+
+        <div className="container-custom relative z-10">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-20 items-end mb-16 lg:mb-24">
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <span className="w-8 h-[2px] bg-brand-orange" />
+                <span className="text-brand-orange text-xs font-black uppercase tracking-[0.3em]">
+                  Why Choose Us
+                </span>
+              </div>
+              <h2 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-text-heading uppercase tracking-tight leading-[1.1]">
+                The Dee Jay <span className="text-gradient">Difference</span>
+              </h2>
+            </div>
+            <p className="text-text-body text-lg leading-relaxed lg:pb-1">
+              Three generations of service, thousands of neighbors helped, and
+              an unwavering commitment to keeping Carlisle running strong.
+            </p>
+          </div>
+
+          <div className="space-y-16 lg:space-y-24">
             {features.map((feature, i) => {
               const Icon = feature.icon;
+              const isEven = i % 2 === 0;
               return (
                 <div
                   key={i}
-                  className="group relative bg-white border-2 border-border-default rounded-3xl overflow-hidden hover:border-brand-orange hover:shadow-xl transition-all duration-500"
+                  className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center"
                 >
-                  {/* Image */}
-                  <div className="relative h-56 overflow-hidden">
-                    <img
-                      src={feature.image}
-                      alt={feature.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                  <div
+                    className={`relative ${isEven ? "lg:order-1" : "lg:order-2"}`}
+                  >
+                    <div className="relative rounded-[32px] overflow-hidden shadow-2xl aspect-[4/3]">
+                      <img
+                        src={feature.image}
+                        alt={feature.title}
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                      />
+                    </div>
+                    <div
+                      className={`absolute -bottom-6 ${
+                        isEven ? "-right-4 lg:right-8" : "-left-4 lg:left-8"
+                      } w-20 h-20 bg-brand-orange rounded-2xl shadow-xl flex items-center justify-center`}
+                    >
+                      <span className="font-heading font-black text-3xl text-white">
+                        0{i + 1}
+                      </span>
+                    </div>
                   </div>
 
-                  {/* Content */}
-                  <div className="p-8">
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-orange to-brand-gold flex items-center justify-center text-white shadow-lg mb-5 group-hover:scale-110 transition-transform">
+                  <div
+                    className={`${isEven ? "lg:order-2 lg:pl-8" : "lg:order-1 lg:pr-8"}`}
+                  >
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-orange to-brand-gold flex items-center justify-center text-white shadow-lg mb-6">
                       <Icon className="h-7 w-7" />
                     </div>
-                    <h3 className="font-heading font-black text-lg text-text-heading uppercase tracking-wide mb-3">
+                    <h3 className="font-heading font-black text-2xl lg:text-3xl text-text-heading uppercase tracking-wide mb-4">
                       {feature.title}
                     </h3>
-                    <p className="text-sm text-text-body font-medium leading-relaxed">
+                    <p className="text-text-body leading-relaxed text-lg mb-6">
                       {feature.description}
                     </p>
+                    <Link
+                      to={"/booking"}
+                      className="flex items-center gap-2 text-brand-orange text-sm font-black uppercase tracking-wider cursor-pointer group"
+                    >
+                      <span>Explore Services</span>
+                      <ArrowRight
+                        size={16}
+                        strokeWidth={3}
+                        className="group-hover:translate-x-1 transition-transform"
+                      />
+                    </Link>
                   </div>
                 </div>
               );
@@ -374,145 +623,138 @@ export const HomePage = () => {
       </section>
 
       {/* ==========================================
-          TESTIMONIALS — Image + Content Split
+          TESTIMONIALS — Masonry Board Style
           ========================================== */}
       <section className="py-24 lg:py-32 bg-surface-warm">
         <div className="container-custom">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            {/* Left: Large Image */}
-            <div className="relative">
-              <div className="rounded-3xl overflow-hidden shadow-2xl">
-                <img
-                  src="/images/Dee-Jay-Auto-External.webp"
-                  alt="Satisfied Customer"
-                  className="w-full h-[400px] lg:h-[560px] object-cover"
-                />
-              </div>
-
-              {/* Floating Review Card */}
-              {/* <div className="absolute -bottom-6 -right-4 lg:-right-8 bg-white rounded-2xl p-5 shadow-xl border border-border-default max-w-[280px]">
-                <div className="flex items-center gap-1 mb-3">
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <Star
-                      key={i}
-                      className="h-4 w-4 text-brand-gold"
-                      fill="currentColor"
-                    />
-                  ))}
-                </div>
-                <p className="text-text-body text-sm leading-relaxed mb-4">
-                  "Best auto shop in town! Fixed my transmission in one day when
-                  others quoted me a week."
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-brand-orange to-brand-gold flex items-center justify-center text-white font-bold text-sm">
-                    JD
-                  </div>
-                  <div>
-                    <div className="font-bold text-sm text-text-heading">
-                      John Davidson
-                    </div>
-                    <div className="text-xs text-text-muted">
-                      Verified Customer
-                    </div>
-                  </div>
-                </div>
-              </div> */}
-
-              {/* Decorative */}
-              <div className="absolute -top-4 -left-4 w-20 h-20 border-2 border-dashed border-brand-orange/20 rounded-full animate-[spin_40s_linear_infinite]" />
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <span className="w-8 h-[2px] bg-brand-orange" />
+              <span className="text-brand-orange text-xs font-black uppercase tracking-[0.3em]">
+                Community Voices
+              </span>
+              <span className="w-8 h-[2px] bg-brand-orange" />
             </div>
+            <h2 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-text-heading uppercase tracking-tight leading-[1.1] mb-5">
+              Trusted by <span className="text-gradient">Generations</span>
+            </h2>
+            <p className="text-text-body text-lg leading-relaxed">
+              For over 70 years, we have been more than a store—we are where the
+              community connects.
+            </p>
+          </div>
 
-            {/* Right: Content */}
-            <div className="space-y-8 lg:pl-8">
-              <div>
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="w-8 h-[2px] bg-brand-orange" />
-                  <span className="text-brand-orange text-xs font-black uppercase tracking-[0.3em]">
-                    Testimonials
-                  </span>
-                </div>
-                <h2 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-text-heading uppercase tracking-tight leading-[1.1] mb-5">
-                  Trusted by Thousands of{" "}
-                  <span className="text-gradient">Local Drivers</span>
-                </h2>
-                <p className="text-text-body text-lg leading-relaxed">
-                  Don't just take our word for it. Here's what our community has
-                  to say about their experience with us.
-                </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="md:col-span-2 lg:col-span-1 lg:row-span-2 bg-white rounded-[28px] p-8 border border-border-default shadow-sm relative overflow-hidden">
+              <div className="absolute top-6 right-6 text-brand-orange/10">
+                <Quote className="h-16 w-16" />
               </div>
-
-              {/* Review List */}
-              <div className="space-y-5">
-                {[
-                  {
-                    name: "Sarah Mitchell",
-                    text: "Fast, honest, and fairly priced. They explained everything clearly and didn't try to upsell me on unnecessary repairs.",
-                    rating: 5,
-                  },
-                  {
-                    name: "Mike Torres",
-                    text: "Been coming here for 10 years. The team treats every car like their own. Wouldn't trust anyone else with my vehicles.",
-                    rating: 5,
-                  },
-                  {
-                    name: "Lisa Chen",
-                    text: "Emergency brake repair on a Saturday morning. They saved my weekend road trip! Forever grateful for their dedication.",
-                    rating: 5,
-                  },
-                ].map((review, i) => (
-                  <div
+              <div className="flex items-center gap-1 mb-6">
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <Star
                     key={i}
-                    className="flex items-center gap-4 p-5 rounded-2xl bg-white border border-border-default hover:border-brand-orange/30 hover:shadow-md transition-all duration-300"
-                  >
-                    <div className="w-11 h-11 rounded-full bg-gradient-to-br from-brand-orange/15 to-brand-gold/15 flex items-center justify-center text-brand-orange font-bold text-sm shrink-0">
-                      {review.name
-                        .split(" ")
-                        .map((n) => n[0])
-                        .join("")}
-                    </div>
-                    <div>
-                      <div className="flex items-center gap-2 mb-1.5">
-                        <span className="font-bold text-sm text-text-heading">
-                          {review.name}
-                        </span>
-                        <div className="flex">
-                          {[...Array(review.rating)].map((_, j) => (
-                            <Star
-                              key={j}
-                              className="h-3 w-3 text-brand-gold"
-                              fill="currentColor"
-                            />
-                          ))}
-                        </div>
-                      </div>
-                      <p className="text-sm text-text-body leading-relaxed">
-                        {review.text}
-                      </p>
-                    </div>
-                  </div>
+                    className="h-4 w-4 text-brand-gold"
+                    fill="currentColor"
+                  />
                 ))}
               </div>
-
-              <Link to="/booking">
-                <Button size="lg" variant="gradient" className="gap-2">
-                  Explore Our Services
-                  <ArrowRight className="h-5 w-5" />
-                </Button>
-              </Link>
+              <blockquote className="text-text-heading text-lg font-medium leading-relaxed mb-8 relative z-10">
+                "Dee Jay has been our family&apos;s go-to for three generations.
+                Whether it is auto parts for the truck, feed for the horses, or
+                just catching up with neighbors—they are Carlisle&apos;s living
+                room."
+              </blockquote>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-brand-orange to-brand-gold flex items-center justify-center text-white font-bold">
+                  RJ
+                </div>
+                <div>
+                  <div className="font-bold text-text-heading">
+                    Robert Jennings
+                  </div>
+                  <div className="text-sm text-text-muted">
+                    Local Farmer & Customer Since 1982
+                  </div>
+                </div>
+              </div>
             </div>
+
+            {[
+              {
+                name: "Sarah Mitchell",
+                text: "I needed a hydraulic hose fixed for my tractor on a Friday afternoon. They had it done in under an hour—saved my entire weekend.",
+                tag: "Hydraulic Repair",
+              },
+              {
+                name: "Mike Torres",
+                text: "Been coming here for 15 years for everything—auto parts, hardware, and now feed for my dogs. The team knows me by name.",
+                tag: "Loyal Customer",
+              },
+              {
+                name: "Lisa Chen",
+                text: "I was shocked to find they carry Echo power equipment. Bought a chainsaw and a weed eater, and the staff walked me through everything.",
+                tag: "Echo Equipment",
+              },
+              {
+                name: "James Wright",
+                text: "When our water heater went out, I thought I would have to drive to Lexington. Nope—Dee Jay had exactly what I needed.",
+                tag: "Plumbing Supplies",
+              },
+            ].map((review, i) => (
+              <div
+                key={i}
+                className="bg-white rounded-[24px] p-6 border border-border-default hover:border-brand-orange/30 hover:shadow-lg transition-all duration-300"
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex">
+                    {[...Array(5)].map((_, j) => (
+                      <Star
+                        key={j}
+                        className="h-3 w-3 text-brand-gold"
+                        fill="currentColor"
+                      />
+                    ))}
+                  </div>
+                  <span className="text-[10px] font-black text-brand-orange uppercase tracking-wider bg-brand-orange/10 px-2 py-1 rounded-full">
+                    {review.tag}
+                  </span>
+                </div>
+                <p className="text-text-body text-sm leading-relaxed mb-5">
+                  {review.text}
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-brand-orange/15 to-brand-gold/15 flex items-center justify-center text-brand-orange font-bold text-xs">
+                    {review.name
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")}
+                  </div>
+                  <span className="font-bold text-sm text-text-heading">
+                    {review.name}
+                  </span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* ==========================================
-          CONTACT & LOCATION — Split with Image
+          CONTACT — Full-bleed with Floating Cards
           ========================================== */}
-      <section className="py-24 lg:py-32 bg-white">
-        <div className="container-custom">
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
-            {/* Left: Contact Info */}
-            <div className="lg:col-span-5 space-y-8">
+      <section className="relative py-24 lg:py-32 overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="/images/West-Main-Open-Bay.webp"
+            alt="Dee Jay Auto Parts & Hardware Interior"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-brand-navy/85" />
+        </div>
+
+        <div className="container-custom relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
               <div>
                 <div className="flex items-center gap-2 mb-4">
                   <span className="w-8 h-[2px] bg-brand-orange" />
@@ -520,169 +762,187 @@ export const HomePage = () => {
                     Visit Us
                   </span>
                 </div>
-                <h2 className="font-heading font-black text-3xl sm:text-4xl text-text-heading uppercase tracking-tight leading-[1.1] mb-5">
-                  Ready to Get Your{" "}
-                  <span className="text-gradient">Vehicle Serviced ?</span>
+                <h2 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-white uppercase tracking-tight leading-[1.1] mb-5">
+                  Ready to Get Started on{" "}
+                  <span className="text-gradient">Your Next Project?</span>
                 </h2>
-                <p className="text-text-body leading-relaxed">
+                <p className="text-white/60 text-lg leading-relaxed max-w-md">
                   Drop by the shop or give us a call. Walk-ins are always
-                  welcome, but appointments get priority service and guaranteed
-                  time slots.
+                  welcome, and our friendly team is ready to help you find
+                  exactly what you need.
                 </p>
               </div>
 
-              <div className="space-y-4">
-                {[
-                  {
-                    icon: MapPin,
-                    label: "Address",
-                    value: "123 West Main Street\nYour City, ST 12345",
-                  },
-                  { icon: Phone, label: "Phone", value: "(555) 123-4567" },
-                  {
-                    icon: Clock,
-                    label: "Business Hours",
-                    value:
-                      "Monday - Friday: 7:00 AM - 5:00 PM\nSaturday: 8:00 AM - 2:00 PM\nSunday: Closed",
-                  },
-                ].map((item, i) => {
-                  const Icon = item.icon;
-                  return (
-                    <div
-                      key={i}
-                      className="flex items-center gap-4 p-5 bg-surface-warm rounded-2xl border border-border-default hover:border-brand-orange/30 hover:shadow-md transition-all duration-300"
-                    >
-                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-orange/10 to-brand-gold/10 flex items-center justify-center text-brand-orange shrink-0">
-                        <Icon className="h-5 w-5" />
-                      </div>
-                      <div>
-                        <div className="text-xs font-black text-text-muted uppercase tracking-wider mb-1">
-                          {item.label}
-                        </div>
-                        <div className="text-sm text-text-body font-medium whitespace-pre-line leading-relaxed">
-                          {item.value}
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-
               <div className="flex flex-col sm:flex-row gap-3">
-                <Link to="/booking" className="flex-1">
-                  <Button size="lg" variant="gradient" className="w-full gap-2">
-                    Book Now
+                <a
+                  href="https://maps.google.com/?q=328+W+Main+St+Carlisle+KY+40311"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1"
+                >
+                  <Button
+                    size="md"
+                    variant="gradient"
+                    className="w-full gap-2 cursor-pointer"
+                  >
+                    <Navigation className="h-5 w-5" />
+                    Get Directions
                     <ArrowRight className="h-5 w-5" />
                   </Button>
-                </Link>
-                <a href="tel:5551234567" className="flex-1">
+                </a>
+                <a href="tel:8592892208" className="flex-1">
                   <Button
-                    size="lg"
-                    variant="secondary"
-                    className="w-full gap-2"
+                    size="md"
+                    variant="outline"
+                    className="w-full gap-2 border-2 border-white/25 text-white hover:bg-white/10 cursor-pointer"
                   >
                     <Phone className="h-5 w-5" />
-                    Call Us
+                    (859) 289-2208
                   </Button>
                 </a>
               </div>
             </div>
 
-            {/* Right: Location Image */}
-            <div className="lg:col-span-7">
-              <div className="h-full min-h-[400px] lg:min-h-0 rounded-3xl overflow-hidden shadow-2xl relative group">
-                <img
-                  src="/images/West-Main-Open-Bay.webp"
-                  alt="Our Location"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/70 via-transparent to-transparent" />
-
-                {/* Location Pin */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                  <div className="relative">
-                    <div className="w-14 h-14 rounded-full bg-brand-orange flex items-center justify-center shadow-xl">
-                      <MapPin className="h-7 w-7 text-white" />
+            <div className="space-y-4">
+              {[
+                {
+                  icon: MapPin,
+                  label: "Address",
+                  value: "328 W Main St\nCarlisle, KY 40311",
+                },
+                {
+                  icon: Phone,
+                  label: "Phone",
+                  value: "(859) 289-2208",
+                },
+                {
+                  icon: Clock,
+                  label: "Business Hours",
+                  value: "Monday – Saturday\n7:00 AM – 5:30 PM\nSunday: Closed",
+                },
+              ].map((item, i) => {
+                const Icon = item.icon;
+                return (
+                  <div
+                    key={i}
+                    className="flex items-center gap-4 p-6 bg-white/10 backdrop-blur-md rounded-2xl border border-white/10 hover:bg-white/15 transition-all duration-300"
+                  >
+                    <div className="w-12 h-12 rounded-xl bg-brand-orange/20 flex items-center justify-center text-brand-orange shrink-0">
+                      <Icon className="h-5 w-5" />
                     </div>
-                    <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-4 h-4 bg-brand-orange rotate-45" />
-                  </div>
-                </div>
-
-                {/* Bottom Info */}
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-5 flex items-center justify-between shadow-lg">
                     <div>
-                      <div className="font-bold text-text-heading">
-                        West Main Tire & Lube
+                      <div className="text-xs font-black text-white/50 uppercase tracking-wider mb-1">
+                        {item.label}
                       </div>
-                      <div className="text-sm text-text-muted">
-                        123 West Main Street, Your City
+                      <div className="text-sm text-white font-medium whitespace-pre-line leading-relaxed">
+                        {item.value}
                       </div>
                     </div>
-                    <a
-                      href="https://maps.google.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Button size="sm" variant="gradient" className="gap-1">
-                        <MapPin className="h-4 w-4" />
-                        Directions
-                      </Button>
-                    </a>
                   </div>
-                </div>
-              </div>
+                );
+              })}
             </div>
           </div>
         </div>
       </section>
 
       {/* ==========================================
-          FINAL CTA — Full-Width Banner
+          FINAL CTA — Premium Card Design
           ========================================== */}
-      <section className="relative py-24 lg:py-32 overflow-hidden">
-        {/* Background */}
-        <div className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=2070&auto=format&fit=crop"
-            alt="Service Bay"
-            className="w-full h-full object-cover"
+      <section className="relative py-24 lg:py-32 bg-surface-white overflow-hidden">
+        <div className="absolute inset-0 opacity-50">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `radial-gradient(circle at 1px 1px, rgba(0,0,0,0.05) 1px, transparent 0)`,
+              backgroundSize: "40px 40px",
+            }}
           />
-          <div className="absolute inset-0 bg-brand-navy/90" />
-          <div className="absolute inset-0 bg-gradient-to-r from-brand-navy via-brand-navy/95 to-brand-orange/20" />
         </div>
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-brand-orange/5 rounded-full blur-[120px] pointer-events-none" />
 
         <div className="container-custom relative z-10">
-          <div className="max-w-3xl mx-auto text-center space-y-8">
-            <h2 className="font-heading font-black text-3xl sm:text-4xl md:text-5xl text-white uppercase tracking-tight leading-[1.1]">
-              Don't Wait Schedule Your{" "}
-              <span className="text-gradient">Service Today</span>
-            </h2>
-            <p className="text-white/60 text-lg max-w-xl mx-auto leading-relaxed">
-              Preventive maintenance saves you money and keeps you safe on the
-              road. Book your appointment in under 2 minutes.
-            </p>
+          <div className=" mx-auto">
+            <div className="relative bg-white rounded-[40px] border border-border-light shadow-2xl overflow-hidden">
+              <div className="h-2 bg-gradient-to-r from-brand-orange via-brand-gold to-brand-orange" />
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/booking">
-                <Button
-                  size="lg"
-                  variant="gradient"
-                  className="gap-2 text-base px-10 w-full sm:w-auto justify-center"
-                >
-                  Schedule Now
-                  <ArrowRight className="h-5 w-5" />
-                </Button>
-              </Link>
-              <Link to="/auto-parts">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="gap-2 border-2 border-white/25 text-white hover:bg-white/10 text-base px-10 w-full sm:w-auto justify-center"
-                >
-                  Shop Parts
-                </Button>
-              </Link>
+              <div className="grid lg:grid-cols-5 items-stretch">
+                <div className="lg:col-span-3 p-10 lg:p-16 space-y-8">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-orange/10 rounded-full border border-brand-orange/20">
+                    <HeartHandshake className="h-4 w-4 text-brand-orange" />
+                    <span className="text-brand-orange text-xs font-black uppercase tracking-[0.2em]">
+                      Since 1955
+                    </span>
+                  </div>
+
+                  <h2 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-text-heading uppercase tracking-tight leading-[1.1]">
+                    Experience the Friendly Service{" "}
+                    <span className="text-gradient">
+                      That Made Us a Favorite
+                    </span>
+                  </h2>
+
+                  <p className="text-text-body text-lg leading-relaxed max-w-lg">
+                    From auto parts to hardware, hydraulic hoses to pet feed— we
+                    are your one-stop shop. Stop by and see why Carlisle has
+                    trusted us for over 70 years.
+                  </p>
+
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Link to="/booking">
+                      <Button
+                        size="md"
+                        variant="gradient"
+                        className="gap-2 cursor-pointer"
+                      >
+                        <MapPin className="h-5 w-5" />
+                        Visit Us Today
+                        <ArrowRight className="h-5 w-5" />
+                      </Button>
+                    </Link>
+                    <Link to="/auto-parts">
+                      <Button
+                        size="md"
+                        variant="outline"
+                        className="gap-2 border-2 border-border-default text-text-heading hover:border-brand-orange hover:bg-surface-warm cursor-pointer"
+                      >
+                        <Store className="h-5 w-5" />
+                        Browse Parts
+                      </Button>
+                    </Link>
+                  </div>
+
+                  <div className="flex items-center gap-6 pt-4 border-t border-border-light">
+                    <div className="flex items-center gap-2">
+                      <Shield className="h-4 w-4 text-brand-orange" />
+                      <span className="text-sm text-text-muted font-medium">
+                        AutoValue Dealer
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <BadgeCheck className="h-4 w-4 text-brand-orange" />
+                      <span className="text-sm text-text-muted font-medium">
+                        Echo Dealer
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <HeartHandshake className="h-4 w-4 text-brand-orange" />
+                      <span className="text-sm text-text-muted font-medium">
+                        Family Owned
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="lg:col-span-2 relative min-h-[300px] lg:min-h-0">
+                  <img
+                    src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=800&auto=format&fit=crop"
+                    alt="Dee Jay Store"
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-white via-white/20 to-transparent lg:from-white/60" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
