@@ -4,13 +4,15 @@ import type { ReactNode } from "react";
 interface CardProps {
   children: ReactNode;
   className?: string;
+  glass?: boolean;
 }
 
-export const Card = ({ children, className }: CardProps) => {
+export const Card = ({ children, className, glass = false }: CardProps) => {
   return (
     <div
       className={cn(
-        "rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-card)] text-[var(--color-card-foreground)] shadow-sm",
+        "rounded-2xl border border-border-default bg-surface-white text-text-heading shadow-sm transition-all duration-300 hover:shadow-lg hover:border-brand-orange/20",
+        glass && "glass border-white/20",
         className,
       )}
     >
@@ -21,7 +23,7 @@ export const Card = ({ children, className }: CardProps) => {
 
 export const CardHeader = ({ children, className }: CardProps) => {
   return (
-    <div className={cn("flex flex-col space-y-1.5 p-6", className)}>
+    <div className={cn("flex flex-col space-y-2 p-6", className)}>
       {children}
     </div>
   );
@@ -31,7 +33,7 @@ export const CardTitle = ({ children, className }: CardProps) => {
   return (
     <h3
       className={cn(
-        "text-2xl font-semibold leading-none tracking-tight",
+        "font-heading font-bold text-xl text-text-heading tracking-tight",
         className,
       )}
     >
@@ -43,7 +45,10 @@ export const CardTitle = ({ children, className }: CardProps) => {
 export const CardDescription = ({ children, className }: CardProps) => {
   return (
     <p
-      className={cn("text-sm text-[var(--color-muted-foreground)]", className)}
+      className={cn(
+        "text-sm text-text-muted font-normal leading-relaxed",
+        className,
+      )}
     >
       {children}
     </p>

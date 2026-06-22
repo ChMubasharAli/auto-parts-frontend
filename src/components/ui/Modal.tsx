@@ -20,24 +20,29 @@ export const Modal = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-fade-in">
       <div
-        className="fixed inset-0 bg-black/50 backdrop-blur-sm"
+        className="fixed inset-0 bg-brand-navy/70 backdrop-blur-md"
         onClick={onClose}
       />
       <div
         className={cn(
-          "relative z-50 w-full max-w-lg rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-background)] p-6 shadow-lg",
+          "relative z-50 w-full max-w-lg rounded-3xl border border-white/10 bg-surface-white p-8 shadow-2xl overflow-hidden",
           className,
         )}
       >
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold">{title}</h2>
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="font-heading font-bold text-xl text-text-heading">
+            {title}
+          </h2>
           <button
             onClick={onClose}
-            className="rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-[var(--color-ring)] focus:ring-offset-2"
+            className="w-10 h-10 rounded-xl bg-surface-gray flex items-center justify-center hover:bg-brand-orange/10 hover:text-brand-orange transition-all cursor-pointer group"
           >
-            <X className="h-4 w-4" />
+            <X
+              size={18}
+              className="text-text-muted group-hover:text-brand-orange"
+            />
           </button>
         </div>
         {children}

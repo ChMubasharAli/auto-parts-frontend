@@ -9,7 +9,7 @@ export const Table = ({
   className?: string;
 }) => {
   return (
-    <div className="w-full overflow-auto">
+    <div className="w-full overflow-auto rounded-2xl border border-border-default shadow-sm">
       <table className={cn("w-full caption-bottom text-sm", className)}>
         {children}
       </table>
@@ -24,7 +24,7 @@ export const TableHeader = ({
   children: ReactNode;
   className?: string;
 }) => {
-  return <thead className={cn("[&_tr]:border-b", className)}>{children}</thead>;
+  return <thead className={cn("bg-surface-gray", className)}>{children}</thead>;
 };
 
 export const TableBody = ({
@@ -35,7 +35,7 @@ export const TableBody = ({
   className?: string;
 }) => {
   return (
-    <tbody className={cn("[&_tr:last-child]:border-0", className)}>
+    <tbody className={cn("divide-y divide-border-default", className)}>
       {children}
     </tbody>
   );
@@ -49,12 +49,7 @@ export const TableRow = ({
   className?: string;
 }) => {
   return (
-    <tr
-      className={cn(
-        "border-b border-[var(--color-border)] transition-colors hover:bg-[var(--color-muted)]/50 data-[state=selected]:bg-[var(--color-muted)]",
-        className,
-      )}
-    >
+    <tr className={cn("transition-colors hover:bg-surface-warm/50", className)}>
       {children}
     </tr>
   );
@@ -70,7 +65,7 @@ export const TableHead = ({
   return (
     <th
       className={cn(
-        "h-12 px-4 text-left align-middle font-medium text-[var(--color-muted-foreground)]",
+        "h-14 px-5 text-left align-middle text-xs font-bold uppercase tracking-wider text-text-muted",
         className,
       )}
     >
@@ -86,5 +81,9 @@ export const TableCell = ({
   children: ReactNode;
   className?: string;
 }) => {
-  return <td className={cn("p-4 align-middle", className)}>{children}</td>;
+  return (
+    <td className={cn("p-5 align-middle text-text-body", className)}>
+      {children}
+    </td>
+  );
 };

@@ -2,7 +2,13 @@ import { cn } from "../../lib/utils";
 import type { ButtonHTMLAttributes } from "react";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "destructive" | "outline" | "ghost";
+  variant?:
+    | "primary"
+    | "secondary"
+    | "destructive"
+    | "outline"
+    | "ghost"
+    | "gradient";
   size?: "sm" | "md" | "lg";
   isLoading?: boolean;
 }
@@ -18,26 +24,27 @@ export const Button = ({
 }: ButtonProps) => {
   const variants = {
     primary:
-      "bg-[var(--color-primary)] text-[var(--color-primary-foreground)] hover:opacity-90",
+      "bg-brand-orange text-white hover:bg-brand-orange-dark shadow-brand-gold hover:shadow-lg",
     secondary:
-      "bg-[var(--color-secondary)] text-[var(--color-secondary-foreground)] hover:bg-[var(--color-muted)]",
-    destructive:
-      "bg-[var(--color-destructive)] text-[var(--color-destructive-foreground)] hover:opacity-90",
+      "bg-brand-navy text-white hover:bg-brand-navy-light shadow-brand-gold hover:shadow-lg ",
+    gradient:
+      "bg-gradient-to-r from-brand-orange to-brand-orange text-white shadow-brand-gold hover:shadow-lg",
+    destructive: "bg-destructive text-destructive-foreground hover:opacity-90",
     outline:
-      "border border-[var(--color-border)] bg-transparent hover:bg-[var(--color-muted)]",
-    ghost: "hover:bg-[var(--color-muted)] hover:text-[var(--color-foreground)]",
+      "border-2 border-brand-orange text-brand-orange  shadow-brand-gold hover:shadow-lg ",
+    ghost: "hover:bg-surface-warm text-text-body hover:text-brand-orange",
   };
 
   const sizes = {
-    sm: "h-8 px-3 text-sm",
-    md: "h-10 px-4 py-2",
-    lg: "h-12 px-6 text-lg",
+    sm: "h-10 px-5 text-xs",
+    md: "h-12 px-8 text-sm",
+    lg: "h-14 px-10 text-base",
   };
 
   return (
     <button
       className={cn(
-        "inline-flex items-center cursor-pointer justify-center rounded-[var(--radius-md)] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)] disabled:pointer-events-none disabled:opacity-50",
+        "inline-flex items-center cursor-pointer  justify-center rounded-2xl font-bold tracking-wide transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange/50 disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98]",
         variants[variant],
         sizes[size],
         className,

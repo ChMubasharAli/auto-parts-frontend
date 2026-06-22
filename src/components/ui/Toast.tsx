@@ -27,35 +27,37 @@ export const Toast = ({
   }, [duration, onClose]);
 
   const icons = {
-    success: <CheckCircle className="h-5 w-5 text-green-500" />,
-    error: <AlertCircle className="h-5 w-5 text-[var(--color-destructive)]" />,
-    info: <Info className="h-5 w-5 text-blue-500" />,
+    success: <CheckCircle className="h-5 w-5 text-emerald-500" />,
+    error: <AlertCircle className="h-5 w-5 text-destructive" />,
+    info: <Info className="h-5 w-5 text-brand-orange" />,
   };
 
-  const bgColors = {
-    success: "bg-green-50 border-green-200",
-    error: "bg-red-50 border-[var(--color-destructive)]/20",
-    info: "bg-blue-50 border-blue-200",
+  const styles = {
+    success: "bg-emerald-50 border-emerald-200 text-emerald-700",
+    error: "bg-red-50 border-red-200 text-red-700",
+    info: "bg-brand-orange/[0.05] border-brand-orange/20 text-brand-orange",
   };
 
   return (
     <div
       className={cn(
-        "fixed bottom-4 right-4 z-50 flex items-center gap-3 rounded-[var(--radius-lg)] border p-4 shadow-lg transition-all duration-300",
-        bgColors[type],
+        "fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl border p-5 shadow-xl transition-all duration-300",
+        styles[type],
         isVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0",
       )}
     >
       {icons[type]}
-      <p className="text-sm font-medium">{message}</p>
-      <button onClick={onClose} className="ml-2 opacity-70 hover:opacity-100">
+      <p className="text-sm font-semibold">{message}</p>
+      <button
+        onClick={onClose}
+        className="ml-2 opacity-60 hover:opacity-100 transition-opacity"
+      >
         <X className="h-4 w-4" />
       </button>
     </div>
   );
 };
 
-// Toast container for managing multiple toasts
 import {
   createContext,
   useContext,
