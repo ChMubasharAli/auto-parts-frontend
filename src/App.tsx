@@ -18,6 +18,7 @@ import { SettingsPage } from "./pages/admin/SettingsPage";
 import { HomePage } from "./pages/public/HomePage";
 import { BookingPage } from "./pages/public/BookingPage";
 import { AutoPartsPage } from "./pages/public/AutoPartsPage";
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -34,6 +35,7 @@ function App() {
       <ToastProvider>
         <AuthProvider>
           <BrowserRouter>
+            <ScrollToTop />
             <Routes>
               {/* Public Routes */}
               <Route element={<PublicLayout />}>

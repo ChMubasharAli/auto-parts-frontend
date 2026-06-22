@@ -62,7 +62,7 @@ export const PublicLayout = () => {
               <Clock className="h-3.5 w-3.5 text-brand-orange" />
               Mon-Fri: 7:00 AM - 5:00 PM | Sat: 8:00 AM - 2:00 PM
             </span>
-            <div className="flex items-center gap-1">
+            {/* <div className="flex items-center gap-1">
               {[1, 2, 3, 4, 5].map((i) => (
                 <Star
                   key={i}
@@ -71,7 +71,7 @@ export const PublicLayout = () => {
                 />
               ))}
               <span className="text-xs font-bold text-white ml-1">4.9</span>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
@@ -89,9 +89,9 @@ export const PublicLayout = () => {
         <div className="container-custom flex h-16 lg:h-20 items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 lg:w-11 lg:h-11 rounded-xl bg-gradient-to-br from-brand-orange to-brand-gold flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
+            {/* <div className="w-10 h-10 lg:w-11 lg:h-11 rounded-xl bg-gradient-to-br from-brand-orange to-brand-gold flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
               <Wrench className="h-5 w-5 lg:h-6 lg:w-6 text-white" />
-            </div>
+            </div> */}
             <div>
               <span className="font-heading font-black text-base lg:text-lg text-text-heading uppercase tracking-tight leading-none block">
                 West Main
@@ -296,11 +296,11 @@ export const PublicLayout = () => {
                   </span>
                 </div>
               </Link>
-              <p className="text-sm text-white/60 leading-relaxed mb-6">
+              <p className="text-sm text-white/60 leading-relaxed max-w-sm mb-6">
                 Professional auto repair and maintenance services you can trust.
                 Family-owned since 1995.
               </p>
-              <div className="flex items-center gap-1">
+              {/* <div className="flex items-center gap-1">
                 {[1, 2, 3, 4, 5].map((i) => (
                   <Star
                     key={i}
@@ -311,7 +311,7 @@ export const PublicLayout = () => {
                 <span className="text-sm text-white/80 font-bold ml-2">
                   4.9 Rating
                 </span>
-              </div>
+              </div> */}
             </div>
 
             {/* Quick Links */}
