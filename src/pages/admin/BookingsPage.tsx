@@ -837,7 +837,7 @@ export const BookingsPage = () => {
               <p className="text-[10px] font-bold text-[var(--color-muted-foreground)] uppercase tracking-widest">
                 Update Status
               </p>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2  p-4">
                 <Button
                   variant="outline"
                   size="sm"
