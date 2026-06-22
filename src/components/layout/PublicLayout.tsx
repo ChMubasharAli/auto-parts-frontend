@@ -340,7 +340,7 @@ export const PublicLayout = () => {
                 Contact Us
               </h3>
               <ul className="space-y-4">
-                <li className="flex items-start gap-3">
+                <li className="flex items-center gap-3">
                   <div className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
                     <MapPin className="h-4 w-4 text-brand-orange" />
                   </div>
@@ -355,7 +355,7 @@ export const PublicLayout = () => {
                     </p>
                   </div>
                 </li>
-                <li className="flex items-start gap-3">
+                <li className="flex items-center gap-3">
                   <div className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
                     <Phone className="h-4 w-4 text-brand-orange" />
                   </div>
@@ -371,7 +371,7 @@ export const PublicLayout = () => {
                     </a>
                   </div>
                 </li>
-                <li className="flex items-start gap-3">
+                <li className="flex items-center gap-3">
                   <div className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
                     <Clock className="h-4 w-4 text-brand-orange" />
                   </div>
