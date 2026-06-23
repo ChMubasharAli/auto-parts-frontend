@@ -765,7 +765,7 @@ export const BookingPage = () => {
                 </div>
               </div>
 
-              <div className="flex justify-between">
+              <div className="flex flex-col gap-4 md:flex-row justify-between">
                 <Button
                   variant="outline"
                   onClick={handleBack}
@@ -839,7 +839,7 @@ export const BookingPage = () => {
                 )}
               </div>
 
-              <div className="flex justify-between">
+              <div className="flex flex-col gap-4 md:flex-row justify-between">
                 <Button
                   variant="outline"
                   onClick={handleBack}
@@ -1002,12 +1002,12 @@ export const BookingPage = () => {
                     </div>
                   </div>
 
-                  <div className="flex justify-between items-center pt-2">
+                  <div className="flex flex-col gap-4 md:flex-row justify-between items-center pt-2">
                     <Button
                       type="button"
                       variant="outline"
                       onClick={handleBack}
-                      className="gap-2 cursor-pointer"
+                      className="gap-2 w-full md:w-auto cursor-pointer"
                     >
                       <ChevronLeft size={16} /> Back
                     </Button>
@@ -1015,7 +1015,7 @@ export const BookingPage = () => {
                       type="submit"
                       isLoading={isSubmitting}
                       disabled={isSubmitting}
-                      className="gap-2 cursor-pointer"
+                      className="gap-2 cursor-pointer w-full md:w-auto"
                     >
                       <ShieldCheck size={18} /> Confirm Booking
                     </Button>

@@ -162,7 +162,7 @@ export const PublicLayout = () => {
       <header className="sticky top-0 z-50 bg-white border-b border-border-light">
         <div className="container-custom flex h-16 lg:h-20 items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
+          <div className="flex items-center gap-3 group cursor-pointer">
             <div>
               <span className="font-heading font-black text-base lg:text-lg text-text-heading uppercase tracking-tight leading-none block">
                 {logoText.main}
@@ -171,7 +171,7 @@ export const PublicLayout = () => {
                 {logoText.sub}
               </span>
             </div>
-          </Link>
+          </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-2">
@@ -232,14 +232,9 @@ export const PublicLayout = () => {
             MOBILE SIDEBAR — Slides from right below header
             ========================================== */}
         <div
-          className={`lg:hidden fixed right-0 z-40 transition-transform duration-300 ease-out ${
+          className={`lg:hidden fixed right-0 z-40 h-[calc(100dvh-64px)] w-full transition-transform duration-300 ease-out ${
             isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
           }`}
-          style={{
-            top: "64px",
-            height: "calc(100vh - 64px)",
-            width: "100%",
-          }}
         >
           {/* Backdrop overlay */}
 
@@ -326,7 +321,7 @@ export const PublicLayout = () => {
           <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
             {/* Brand Column */}
             <div>
-              <Link to="/" className="flex items-center gap-3 mb-5">
+              <div className="flex items-center gap-3 mb-5 cursor-pointer">
                 <div>
                   <span className="font-heading font-black text-lg text-white uppercase tracking-tight leading-none block">
                     {currentConfig.footer.brandName}
@@ -335,7 +330,7 @@ export const PublicLayout = () => {
                     {currentConfig.footer.tagline}
                   </span>
                 </div>
-              </Link>
+              </div>
               <p className="text-sm text-white/60 leading-relaxed max-w-sm mb-6">
                 {currentConfig.footer.description}
               </p>

@@ -29,6 +29,10 @@ import {
   Shield,
   Sparkles,
   ArrowDown,
+  Layers,
+  Package,
+  Scissors,
+  Settings,
 } from "lucide-react";
 
 const stats = [
@@ -107,6 +111,73 @@ const productCategories = [
   },
 ];
 
+const products = [
+  {
+    icon: Wrench,
+    tag: "Hand Tools",
+    name: "Professional Wrenches & Sockets",
+    description:
+      "Heavy-duty wall-mounted wrench sets, precision sockets, and mechanics hand tools for workshop organization.",
+    image: "/images/Dee-Jay-Internal-2.webp",
+  },
+  {
+    icon: Droplets,
+    tag: "Maintenance",
+    name: "CRC Automotive Chemicals",
+    description:
+      "Premium performance sprays including Mass Air Flow sensor cleaners, Brakleen brake parts cleaners, and specialty engine fluids.",
+    image: "/images/IMG-2676.webp",
+  },
+  {
+    icon: Shield,
+    tag: "Engine Oil",
+    name: "Shell Rotella T4 Engine Oil",
+    description:
+      "Triple Protection SAE 15W-40 heavy duty diesel engine oil. Formulated for superior wear protection and engine cleanliness.",
+    image: "/images/IMG-5544.webp",
+  },
+  {
+    icon: Settings,
+    tag: "Power Tools",
+    name: "ECHO Outdoor Chainsaws",
+    description:
+      "Professional-grade gas chainsaws, operators manuals, and replacement bar & chain equipment for commercial cutting.",
+    image: "/images/IMG-6942.webp",
+  },
+  {
+    icon: Scissors,
+    tag: "Trimmers",
+    name: "ECHO Gas String Trimmers",
+    description:
+      "High-torque outdoor weed eaters, shaft trimmers, and commercial lawn maintenance equipment with easy-start technology.",
+    image: "/images/IMG-6944.webp",
+  },
+  {
+    icon: Hammer,
+    tag: "Hardware",
+    name: "Bulk Fasteners & Retail Tool Kits",
+    description:
+      "Comprehensive retail display of electrical repair kits, fuses, screwdrivers, and specialized automotive fasteners.",
+    image: "/images/IMG-6945.webp",
+  },
+  {
+    icon: Layers,
+    tag: "Plumbing",
+    name: "Plumb Pak Tubular Drainage",
+    description:
+      "Professional sink & faucet tubular drainage kits, slip joint washers, P-traps, and flexible waste connections.",
+    image: "/images/IMG-6948.webp",
+  },
+  {
+    icon: Package,
+    tag: "Branded Gear",
+    name: "Dee Jay Auto Parts Buckets",
+    description:
+      "Custom branded heavy-duty hardware pails and utility buckets for garage organization and liquid transport.",
+    image: "/images/IMG-6950.webp",
+  },
+];
+
 const iconMap: Record<string, React.ReactNode> = {
   "Oil Change": <Droplets className="h-6 w-6" />,
   "Tire Rotation": <RotateCcw className="h-6 w-6" />,
@@ -116,6 +187,13 @@ const iconMap: Record<string, React.ReactNode> = {
 
 export const HomePage = () => {
   const { data: services, isLoading } = useServices();
+
+  const scrollToProducts = () => {
+    const productsSection = document.getElementById("product-catalog");
+    if (productsSection) {
+      productsSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <div className="overflow-hidden">
@@ -168,7 +246,7 @@ export const HomePage = () => {
 
               {/* CTA Buttons */}
               <div className="flex flex-col md:flex-row gap-4">
-                <Link to="/booking">
+                <a href="tel:8592892208">
                   <Button
                     size="md"
                     variant="gradient"
@@ -178,17 +256,17 @@ export const HomePage = () => {
                     Visit Us Today
                     <ArrowRight className="h-5 w-5" />
                   </Button>
-                </Link>
-                <Link to="/auto-parts">
+                </a>
+                <button onClick={scrollToProducts}>
                   <Button
                     size="md"
                     variant="outline"
                     className="w-full md:w-auto justify-center gap-2 border-2 border-border-default text-text-heading hover:border-brand-orange hover:bg-surface-warm cursor-pointer text-base px-8"
                   >
                     <Store className="h-5 w-5" />
-                    Browse Our Store
+                    Browse Our Products
                   </Button>
-                </Link>
+                </button>
               </div>
             </div>
 
@@ -291,123 +369,7 @@ export const HomePage = () => {
         </div>
       </section>
 
-      {/* ==========================================
-          POPULAR SERVICES   Dynamic from useServices Hook
-          ========================================== */}
-      <section className="py-24 lg:py-32 bg-white">
-        <div className="container-custom">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 border-b border-border-light pb-8">
-            <div className="max-w-xl">
-              <div className="flex items-center gap-2 mb-3">
-                <span className="w-8 h-[2px] bg-brand-orange" />
-                <span className="text-brand-orange text-xs font-black uppercase tracking-[0.3em]">
-                  Service Menu
-                </span>
-              </div>
-              <h2 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-text-heading uppercase tracking-tight leading-[1.1]">
-                Popular <span className="text-gradient">Services</span>
-              </h2>
-            </div>
-            <p className="text-text-muted text-sm max-w-xs font-light leading-relaxed border-l border-border-default pl-4">
-              Professional services to keep your vehicle and equipment running
-              at peak performance.
-            </p>
-          </div>
-
-          {isLoading ? (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {[...Array(4)].map((_, i) => (
-                <div
-                  key={i}
-                  className="h-72 rounded-3xl bg-surface-gray animate-pulse"
-                />
-              ))}
-            </div>
-          ) : (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {services
-                ?.filter((s) => s.isActive)
-                .slice(0, 4)
-                .map((service, i) => (
-                  <div
-                    key={service.id}
-                    className="group relative bg-white border-2 border-border-default p-7 transition-all duration-500 hover:border-brand-orange hover:shadow-lg flex flex-col overflow-hidden rounded-[28px_28px]"
-                  >
-                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-orange to-brand-gold transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
-
-                    <div className="flex items-center justify-between mb-6">
-                      <div className="w-14 h-14 rounded-2xl bg-surface-warm flex items-center justify-center text-brand-orange group-hover:bg-brand-orange group-hover:text-white transition-all duration-300 shadow-sm">
-                        {iconMap[service.name] || (
-                          <Wrench className="h-6 w-6" />
-                        )}
-                      </div>
-                      <span className="font-heading font-black text-3xl text-text-heading/10 group-hover:text-brand-orange/20 transition-colors">
-                        0{i + 1}
-                      </span>
-                    </div>
-
-                    <div className="space-y-3 flex-1">
-                      <span className="inline-block text-[10px] font-black text-brand-orange tracking-[0.2em] uppercase bg-brand-orange/10 px-3 py-1 rounded-full border border-brand-orange/20">
-                        {"Service"}
-                      </span>
-
-                      <h3 className="font-heading font-black text-lg text-text-heading uppercase tracking-wide group-hover:text-brand-orange transition-colors duration-300">
-                        {service.name}
-                      </h3>
-
-                      <p className="text-sm text-text-body font-medium leading-relaxed line-clamp-3">
-                        {service?.description ||
-                          "Professional service by certified technicians with quality guarantee."}
-                      </p>
-                    </div>
-
-                    <div className="mt-6 pt-5 border-t border-border-default group-hover:border-brand-orange/20 transition-colors">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <span className="text-[10px] text-text-muted uppercase tracking-wider font-bold block mb-0.5">
-                            Starting at
-                          </span>
-                          <span className="text-xl font-heading font-black text-brand-orange tracking-tight">
-                            ${Number(service.price).toFixed(2)}
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-1.5 text-text-muted text-xs font-bold uppercase tracking-wider">
-                          <Clock className="h-3.5 w-3.5" />
-                          {service.duration} min
-                        </div>
-                      </div>
-                    </div>
-
-                    <Link
-                      to={"/booking"}
-                      className="mt-4 flex items-center gap-1.5 text-brand-orange text-[10px] font-black uppercase tracking-widest transition-all duration-500 opacity-0 transform translate-x-[-10px] group-hover:opacity-100 group-hover:translate-x-0 cursor-pointer"
-                    >
-                      <span>View Details</span>
-                      <ArrowRight size={12} strokeWidth={3} />
-                    </Link>
-                  </div>
-                ))}
-            </div>
-          )}
-
-          <div className="mt-12 text-center">
-            <Link to="/booking">
-              <Button
-                variant="outline"
-                className="gap-2 cursor-pointer w-full sm:w-auto"
-              >
-                View All Services
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ==========================================
-          PRODUCT SHOWCASE   Asymmetric Mosaic Grid
-          ========================================== */}
-      <section className=" lg:py-32 bg-surface-warm">
+      {/* <section className=" lg:py-32 bg-surface-warm">
         <div className="container-custom">
           <div className="max-w-2xl mb-16 lg:mb-20">
             <div className="flex items-center gap-2 mb-4">
@@ -530,6 +492,91 @@ export const HomePage = () => {
             </div>
           </div>
         </div>
+      </section> */}
+
+      {/* ==========================================
+          PRODUCTS GRID — Geometric Display Panels
+          ========================================== */}
+      <section id="product-catalog" className="py-24 lg:py-36 bg-gray-100">
+        <div className="container-custom">
+          {/* Section Header */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8 max-w-5xl">
+            <div className="space-y-4">
+              <div className="flex items-center gap-2">
+                <span className="w-10 h-[2px] bg-brand-orange" />
+                <span className="text-brand-orange text-xs font-black uppercase tracking-[0.3em]">
+                  Product Catalog
+                </span>
+              </div>
+              <h2 className="font-heading font-black text-4xl sm:text-5xl lg:text-6xl text-text-heading uppercase tracking-tight leading-none">
+                Our <span className="text-gradient">Products</span>
+              </h2>
+            </div>
+            <div className="md:max-w-xs pl-6 border-l-2 border-border-default">
+              <p className="text-text-muted text-sm font-medium leading-relaxed">
+                Wide selection of automotive parts, tools, and hardware supplies
+                tailored for durability.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {products.map((product, i) => (
+              <div
+                key={product.name}
+                className="group relative bg-white rounded-3xl overflow-hidden transition-all duration-500  hover:shadow-2xl hover:-translate-y-2 flex flex-col cursor-pointer border border-transparent hover:border-border-default"
+              >
+                {/* Image Structure */}
+                <div className="relative h-56 overflow-hidden m-3 rounded-2xl shadow-inner">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/60 via-brand-navy/0 to-transparent opacity-80" />
+
+                  {/* Tag Refinement */}
+                  <div className="absolute top-3 left-3">
+                    <span className="inline-block text-[9px] font-black text-brand-navy tracking-wider uppercase bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-md shadow-sm">
+                      {product.tag}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Content Configuration */}
+                <div className="p-6 pt-2 flex-1 flex flex-col justify-between">
+                  <div>
+                    {/* Top Segment: Floating Icon Mapping */}
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-brand-navy group-hover:bg-brand-orange group-hover:text-white transition-all duration-300 shadow-sm border border-border-light">
+                        {iconMap[product.name] || (
+                          <Package className="h-5 w-5" />
+                        )}
+                      </div>
+                      <span className="font-heading font-black text-sm tracking-widest text-text-muted/30">
+                        // 0{i + 1}
+                      </span>
+                    </div>
+
+                    <h3 className="font-heading font-black text-md text-text-heading uppercase tracking-wide mb-3 line-clamp-2 min-h-[3rem] group-hover:text-brand-orange transition-colors">
+                      {product.name}
+                    </h3>
+
+                    <p className="text-sm text-text-body font-normal leading-relaxed line-clamp-3">
+                      {product.description}
+                    </p>
+                  </div>
+
+                  {/* Subtle Interactive Element indicator */}
+                  <div className="pt-4 mt-4 border-t border-border-light/60 flex items-center gap-2 text-xs font-bold text-brand-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span>View Details</span>
+                    <ArrowRight className="w-3 h-3" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* ==========================================
@@ -619,126 +666,6 @@ export const HomePage = () => {
         </div>
       </section> */}
 
-      {/* ==========================================
-          TESTIMONIALS   Masonry Board Style
-          ========================================== */}
-      <section className="py-24 lg:py-32 bg-surface-warm">
-        <div className="container-custom">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <span className="w-8 h-[2px] bg-brand-orange" />
-              <span className="text-brand-orange text-xs font-black uppercase tracking-[0.3em]">
-                Community Voices
-              </span>
-              <span className="w-8 h-[2px] bg-brand-orange" />
-            </div>
-            <h2 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-text-heading uppercase tracking-tight leading-[1.1] mb-5">
-              Trusted by <span className="text-gradient">Generations</span>
-            </h2>
-            <p className="text-text-body text-lg leading-relaxed">
-              For over 70 years, we have been more than a store, we are where
-              the community connects
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="md:col-span-2 lg:col-span-1 lg:row-span-2 bg-white rounded-[28px] p-8 border border-border-default shadow-sm relative overflow-hidden">
-              <div className="absolute top-6 right-6 text-brand-orange/10">
-                <Quote className="h-16 w-16" />
-              </div>
-              <div className="flex items-center gap-1 mb-6">
-                {[1, 2, 3, 4, 5].map((i) => (
-                  <Star
-                    key={i}
-                    className="h-4 w-4 text-brand-gold"
-                    fill="currentColor"
-                  />
-                ))}
-              </div>
-              <blockquote className="text-text-heading text-lg font-medium leading-relaxed mb-8 relative z-10">
-                "Dee Jay has been our family&apos;s go to for three generations.
-                Whether it is auto parts for the truck, feed for the horses, or
-                just catching up with neighbors they are Carlisle&apos;s living
-                room."
-              </blockquote>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-brand-orange to-brand-gold flex items-center justify-center text-white font-bold">
-                  RJ
-                </div>
-                <div>
-                  <div className="font-bold text-text-heading">
-                    Robert Jennings
-                  </div>
-                  <div className="text-sm text-text-muted">
-                    Local Farmer & Customer Since 1982
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {[
-              {
-                name: "Sarah Mitchell",
-                text: "I needed a hydraulic hose fixed for my tractor on a Friday afternoon. They had it done in under an hour saved my entire weekend.",
-                tag: "Hydraulic Repair",
-              },
-              {
-                name: "Mike Torres",
-                text: "Been coming here for 15 years for everything auto parts, hardware, and now feed for my dogs. The team knows me by name.",
-                tag: "Loyal Customer",
-              },
-              {
-                name: "Lisa Chen",
-                text: "I was shocked to find they carry Echo power equipment. Bought a chainsaw and a weed eater, and the staff walked me through everything.",
-                tag: "Echo Equipment",
-              },
-              {
-                name: "James Wright",
-                text: "When our water heater went out, I thought I would have to drive to Lexington. Nope Dee Jay had exactly what I needed.",
-                tag: "Plumbing Supplies",
-              },
-            ].map((review, i) => (
-              <div
-                key={i}
-                className="bg-white rounded-[24px] p-6 border border-border-default hover:border-brand-orange/30 hover:shadow-lg transition-all duration-300"
-              >
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex">
-                    {[...Array(5)].map((_, j) => (
-                      <Star
-                        key={j}
-                        className="h-3 w-3 text-brand-gold"
-                        fill="currentColor"
-                      />
-                    ))}
-                  </div>
-                  <span className="text-[10px] font-black text-brand-orange uppercase tracking-wider bg-brand-orange/10 px-2 py-1 rounded-full">
-                    {review.tag}
-                  </span>
-                </div>
-                <p className="text-text-body text-sm leading-relaxed mb-5">
-                  {review.text}
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-brand-orange/15 to-brand-gold/15 flex items-center justify-center text-brand-orange font-bold text-xs">
-                    {review.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
-                  </div>
-                  <span className="font-bold text-sm text-text-heading">
-                    {review.name}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ==========================================
-          CONTACT   Full-bleed with Floating Cards
-          ========================================== */}
       <section className="relative py-24 lg:py-32 overflow-hidden">
         <div className="absolute inset-0">
           <img
@@ -886,7 +813,7 @@ export const HomePage = () => {
                   </p>
 
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <Link to="/booking">
+                    <a href="tel:8592892208">
                       <Button
                         size="md"
                         variant="gradient"
@@ -896,17 +823,17 @@ export const HomePage = () => {
                         Visit Us Today
                         <ArrowRight className="h-5 w-5" />
                       </Button>
-                    </Link>
-                    <Link to="/auto-parts">
+                    </a>
+                    <button onClick={scrollToProducts}>
                       <Button
                         size="md"
                         variant="outline"
                         className="gap-2 border-2 w-full sm:w-auto border-border-default text-text-heading hover:border-brand-orange hover:bg-surface-warm cursor-pointer"
                       >
                         <Store className="h-5 w-5" />
-                        Browse Parts
+                        Browse Our Products
                       </Button>
-                    </Link>
+                    </button>
                   </div>
 
                   <div className="flex items-center gap-6 pt-4 border-t border-border-light">

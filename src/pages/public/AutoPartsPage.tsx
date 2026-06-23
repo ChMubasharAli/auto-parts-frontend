@@ -24,93 +24,33 @@ import {
   HeartHandshake,
   BadgeCheck,
   Navigation,
+  Quote,
+  ClipboardCheck,
+  ShieldCheck,
 } from "lucide-react";
-
-const products = [
-  {
-    icon: Wrench,
-    tag: "Hand Tools",
-    name: "Professional Wrenches & Sockets",
-    description:
-      "Heavy-duty wall-mounted wrench sets, precision sockets, and mechanics hand tools for workshop organization.",
-    image: "/images/Dee-Jay-Internal-2.webp",
-  },
-  {
-    icon: Droplets,
-    tag: "Maintenance",
-    name: "CRC Automotive Chemicals",
-    description:
-      "Premium performance sprays including Mass Air Flow sensor cleaners, Brakleen brake parts cleaners, and specialty engine fluids.",
-    image: "/images/IMG-2676.webp",
-  },
-  {
-    icon: Shield,
-    tag: "Engine Oil",
-    name: "Shell Rotella T4 Engine Oil",
-    description:
-      "Triple Protection SAE 15W-40 heavy duty diesel engine oil. Formulated for superior wear protection and engine cleanliness.",
-    image: "/images/IMG-5544.webp",
-  },
-  {
-    icon: Settings,
-    tag: "Power Tools",
-    name: "ECHO Outdoor Chainsaws",
-    description:
-      "Professional-grade gas chainsaws, operators manuals, and replacement bar & chain equipment for commercial cutting.",
-    image: "/images/IMG-6942.webp",
-  },
-  {
-    icon: Scissors,
-    tag: "Trimmers",
-    name: "ECHO Gas String Trimmers",
-    description:
-      "High-torque outdoor weed eaters, shaft trimmers, and commercial lawn maintenance equipment with easy-start technology.",
-    image: "/images/IMG-6944.webp",
-  },
-  {
-    icon: Hammer,
-    tag: "Hardware",
-    name: "Bulk Fasteners & Retail Tool Kits",
-    description:
-      "Comprehensive retail display of electrical repair kits, fuses, screwdrivers, and specialized automotive fasteners.",
-    image: "/images/IMG-6945.webp",
-  },
-  {
-    icon: Layers,
-    tag: "Plumbing",
-    name: "Plumb Pak Tubular Drainage",
-    description:
-      "Professional sink & faucet tubular drainage kits, slip joint washers, P-traps, and flexible waste connections.",
-    image: "/images/IMG-6948.webp",
-  },
-  {
-    icon: Package,
-    tag: "Branded Gear",
-    name: "Dee Jay Auto Parts Buckets",
-    description:
-      "Custom branded heavy-duty hardware pails and utility buckets for garage organization and liquid transport.",
-    image: "/images/IMG-6950.webp",
-  },
-];
+import { useServices } from "../../hooks/useServices";
 
 const specialServices = [
   {
-    icon: Shield,
-    tag: "Trust",
-    title: "Parts Warranty",
-    description: "All parts come with a minimum 1-year warranty.",
+    icon: Clock,
+    tag: "Save Time",
+    title: "Fast Turnaround",
+    description:
+      "Most routine services are completed quickly, including oil changes in about 30 minutes and tire rotations in as little as 15 minutes, helping you get back on the road faster.",
   },
   {
-    icon: Truck,
-    tag: "Speed",
-    title: "Special Orders",
-    description: "Can't find it? We can order any part within 24-48 hours.",
+    icon: ShieldCheck,
+    tag: "Trusted Experts",
+    title: "25+ Years Experience",
+    description:
+      "Our team brings more than 25 years of combined automotive experience, delivering dependable maintenance, accurate recommendations, and quality workmanship.",
   },
   {
-    icon: ShoppingCart,
-    tag: "Value",
-    title: "Bulk Pricing",
-    description: "Discounted rates for mechanics and fleet operators.",
+    icon: Phone,
+    tag: "Easy Process",
+    title: "Convenient Service",
+    description:
+      "From quick estimates to scheduling repairs, we make vehicle maintenance simple with friendly support, transparent communication, and hassle-free service.",
   },
 ];
 
@@ -126,6 +66,7 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 export const AutoPartsPage = () => {
+  const { data: services, isLoading } = useServices();
   return (
     <div className="overflow-hidden bg-surface-gray">
       {/* ==========================================
@@ -191,7 +132,7 @@ export const AutoPartsPage = () => {
               <div className="absolute inset-0 rounded-2xl overflow-hidden bg-brand-navy shadow-2xl border border-white/10 group">
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F19] via-transparent to-transparent z-10" />
                 <img
-                  src="/images/IMG-6947.webp"
+                  src="/images/West-Main-Open-Bay.webp"
                   alt="West Main Tire & Lube Shop"
                   className="w-full h-full object-cover transform scale-100 group-hover:scale-105 transition-transform duration-700"
                 />
@@ -207,86 +148,121 @@ export const AutoPartsPage = () => {
       </section>
 
       {/* ==========================================
-          PRODUCTS GRID — Geometric Display Panels
+          POPULAR SERVICES   Dynamic from useServices Hook
           ========================================== */}
-      <section className="py-24 lg:py-36 bg-surface-white">
+      <section className="py-24 lg:py-32 bg-white">
         <div className="container-custom">
-          {/* Section Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8 max-w-5xl">
-            <div className="space-y-4">
-              <div className="flex items-center gap-2">
-                <span className="w-10 h-[2px] bg-brand-orange" />
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 border-b border-border-light pb-8">
+            <div className="max-w-xl">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="w-8 h-[2px] bg-brand-orange" />
                 <span className="text-brand-orange text-xs font-black uppercase tracking-[0.3em]">
-                  Product Catalog
+                  Service Menu
                 </span>
               </div>
-              <h2 className="font-heading font-black text-4xl sm:text-5xl lg:text-6xl text-text-heading uppercase tracking-tight leading-none">
-                Our <span className="text-gradient">Products</span>
+              <h2 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-text-heading uppercase tracking-tight leading-[1.1]">
+                Popular <span className="text-gradient">Services</span>
               </h2>
             </div>
-            <div className="md:max-w-xs pl-6 border-l-2 border-border-default">
-              <p className="text-text-muted text-sm font-medium leading-relaxed">
-                Wide selection of automotive parts, tools, and hardware supplies
-                tailored for durability.
-              </p>
-            </div>
+            <p className="text-text-muted text-sm max-w-xs font-light leading-relaxed border-l border-border-default pl-4">
+              Professional services to keep your vehicle and equipment running
+              at peak performance.
+            </p>
           </div>
 
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {products.map((product, i) => (
-              <div
-                key={product.name}
-                className="group relative bg-brand-gold-light/30 rounded-3xl overflow-hidden transition-all duration-500 hover:brand-gold-light/50 hover:shadow-2xl hover:-translate-y-2 flex flex-col cursor-pointer border border-transparent hover:border-border-default"
-              >
-                {/* Image Structure */}
-                <div className="relative h-56 overflow-hidden m-3 rounded-2xl shadow-inner">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/60 via-brand-navy/0 to-transparent opacity-80" />
+          {isLoading ? (
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {[...Array(4)].map((_, i) => (
+                <div
+                  key={i}
+                  className="h-72 rounded-3xl bg-surface-gray animate-pulse"
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {services
+                ?.filter((s) => s.isActive)
+                .slice(0, 4)
+                .map((service, i) => (
+                  <div
+                    key={service.id}
+                    className="group relative bg-white border-2 border-border-default p-7 transition-all duration-500 hover:border-brand-orange hover:shadow-lg flex flex-col overflow-hidden rounded-[28px_28px]"
+                  >
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-orange to-brand-gold transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
 
-                  {/* Tag Refinement */}
-                  <div className="absolute top-3 left-3">
-                    <span className="inline-block text-[9px] font-black text-brand-navy tracking-wider uppercase bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-md shadow-sm">
-                      {product.tag}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Content Configuration */}
-                <div className="p-6 pt-2 flex-1 flex flex-col justify-between">
-                  <div>
-                    {/* Top Segment: Floating Icon Mapping */}
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-brand-navy group-hover:bg-brand-orange group-hover:text-white transition-all duration-300 shadow-sm border border-border-light">
-                        {iconMap[product.name] || (
-                          <Package className="h-5 w-5" />
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="w-14 h-14 rounded-2xl bg-surface-warm flex items-center justify-center text-brand-orange group-hover:bg-brand-orange group-hover:text-white transition-all duration-300 shadow-sm">
+                        {iconMap[service.name] || (
+                          <Wrench className="h-6 w-6" />
                         )}
                       </div>
-                      <span className="font-heading font-black text-sm tracking-widest text-text-muted/30">
-                        // 0{i + 1}
+                      <span className="font-heading font-black text-3xl text-text-heading/10 group-hover:text-brand-orange/20 transition-colors">
+                        0{i + 1}
                       </span>
                     </div>
 
-                    <h3 className="font-heading font-black text-md text-text-heading uppercase tracking-wide mb-3 line-clamp-2 min-h-[3rem] group-hover:text-brand-orange transition-colors">
-                      {product.name}
-                    </h3>
+                    <div className="space-y-3 flex-1">
+                      <span className="inline-block text-[10px] font-black text-brand-orange tracking-[0.2em] uppercase bg-brand-orange/10 px-3 py-1 rounded-full border border-brand-orange/20">
+                        {"Service"}
+                      </span>
 
-                    <p className="text-sm text-text-body font-normal leading-relaxed line-clamp-3">
-                      {product.description}
-                    </p>
-                  </div>
+                      <h3 className="font-heading font-black text-lg text-text-heading uppercase tracking-wide group-hover:text-brand-orange transition-colors duration-300">
+                        {service.name}
+                      </h3>
 
-                  {/* Subtle Interactive Element indicator */}
-                  <div className="pt-4 mt-4 border-t border-border-light/60 flex items-center gap-2 text-xs font-bold text-brand-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <span>View Details</span>
-                    <ArrowRight className="w-3 h-3" />
+                      <p className="text-sm text-text-body font-medium leading-relaxed line-clamp-3">
+                        {service?.description ||
+                          "Professional service by certified technicians with quality guarantee."}
+                      </p>
+                    </div>
+
+                    <div className="mt-6 pt-5 border-t border-border-default group-hover:border-brand-orange/20 transition-colors">
+                      <div
+                        className={`flex items-center ${service.price ? "justify-between" : "justify-end"}`}
+                      >
+                        {service.price && (
+                          <div>
+                            <span className="text-[10px] text-text-muted uppercase tracking-wider font-bold block mb-0.5">
+                              Starting at
+                            </span>
+                            <span className="text-xl font-heading font-black text-brand-orange tracking-tight">
+                              ${Number(service.price).toFixed(2)}
+                            </span>
+                          </div>
+                        )}
+                        <div className="flex items-center gap-1.5 text-xl font-heading font-black text-brand-orange tracking-tight">
+                          <Clock className="h-3.5 w-3.5" />
+                          {service.duration} min
+                        </div>
+                      </div>
+                    </div>
+
+                    <Link to={"/booking"} className="mt-4 ">
+                      <Button
+                        size="sm"
+                        variant="gradient"
+                        className="w-full gap-3 justify-center cursor-pointer  font-black text-sm uppercase tracking-wider"
+                      >
+                        <ArrowRight className="h-4 w-4" />
+                        Book Now
+                      </Button>
+                    </Link>
                   </div>
-                </div>
-              </div>
-            ))}
+                ))}
+            </div>
+          )}
+
+          <div className="mt-12 text-center">
+            <Link to="/booking">
+              <Button
+                variant="outline"
+                className="gap-2 cursor-pointer w-full sm:w-auto"
+              >
+                View All Services
+                <ArrowRight className="h-4 w-4" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -305,16 +281,16 @@ export const AutoPartsPage = () => {
             <div className="flex items-center justify-center gap-3 mb-4">
               <span className="w-6 h-[1px] bg-brand-gold" />
               <span className="text-brand-gold text-xs font-black uppercase tracking-[0.4em]">
-                Added Value
+                Why Choose Us
               </span>
               <span className="w-6 h-[1px] bg-brand-gold" />
             </div>
             <h2 className="font-heading font-black text-4xl sm:text-5xl lg:text-6xl text-white uppercase tracking-tight leading-tight">
-              Special <span className="text-gradient">Services</span>
+              Auto Care Made <span className="text-gradient">Simple</span>
             </h2>
             <p className="text-white/60 text-base md:text-lg leading-relaxed mt-4 max-w-xl mx-auto font-light">
-              Extra benefits that make shopping with us the best choice for your
-              vehicle needs.
+              Fast service, experienced technicians, and a customer-first
+              approach that makes maintaining your vehicle easier than ever.
             </p>
           </div>
 
@@ -358,6 +334,123 @@ export const AutoPartsPage = () => {
                 </div>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* ==========================================
+          TESTIMONIALS   Masonry Board Style
+          ========================================== */}
+      <section className="py-24 lg:py-32 bg-surface-warm">
+        <div className="container-custom">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <span className="w-8 h-[2px] bg-brand-orange" />
+              <span className="text-brand-orange text-xs font-black uppercase tracking-[0.3em]">
+                Customer Reviews
+              </span>
+              <span className="w-8 h-[2px] bg-brand-orange" />
+            </div>
+            <h2 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-text-heading uppercase tracking-tight leading-[1.1] mb-5">
+              Trusted for <span className="text-gradient">Every Mile</span>
+            </h2>
+            <p className="text-text-body text-lg leading-relaxed">
+              Providing reliable auto maintenance and repair services with over
+              25 years of combined experience serving Carlisle and surrounding
+              areas.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="md:col-span-2 lg:col-span-1 lg:row-span-2 bg-white rounded-[28px] p-8 border border-border-default shadow-sm relative overflow-hidden">
+              <div className="absolute top-6 right-6 text-brand-orange/10">
+                <Quote className="h-16 w-16" />
+              </div>
+              <div className="flex items-center gap-1 mb-6">
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <Star
+                    key={i}
+                    className="h-4 w-4 text-brand-gold"
+                    fill="currentColor"
+                  />
+                ))}
+              </div>
+              <blockquote className="text-text-heading text-lg font-medium leading-relaxed mb-8 relative z-10">
+                "I brought my truck in for an oil change and tire rotation, and
+                the team had everything completed faster than expected. Friendly
+                service, honest recommendations, and quality work every time."
+              </blockquote>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-brand-orange to-brand-gold flex items-center justify-center text-white font-bold">
+                  RJ
+                </div>
+                <div>
+                  <div className="font-bold text-text-heading">
+                    Robert Jennings
+                  </div>
+                  <div className="text-sm text-text-muted">
+                    Carlisle Resident & Long-Time Customer
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {[
+              {
+                name: "Sarah Mitchell",
+                text: "Needed a quick oil change before a road trip. The team got me in and out in about 30 minutes and made sure my vehicle was ready for the drive.",
+                tag: "Oil Change",
+              },
+              {
+                name: "Mike Torres",
+                text: "Had all four tires mounted and balanced here. The process was smooth, the staff was professional, and the ride feels better than ever.",
+                tag: "Mount & Balance",
+              },
+              {
+                name: "Lisa Chen",
+                text: "Stopped by for a tire rotation and inspection. They explained everything clearly and helped extend the life of my tires.",
+                tag: "Tire Rotation",
+              },
+              {
+                name: "James Wright",
+                text: "I needed an estimate for some repair work. They provided honest advice, fair pricing, and answered all of my questions without pressure.",
+                tag: "Vehicle Estimate",
+              },
+            ].map((review, i) => (
+              <div
+                key={i}
+                className="bg-white rounded-[24px] p-6 border border-border-default hover:border-brand-orange/30 hover:shadow-lg transition-all duration-300"
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex">
+                    {[...Array(5)].map((_, j) => (
+                      <Star
+                        key={j}
+                        className="h-3 w-3 text-brand-gold"
+                        fill="currentColor"
+                      />
+                    ))}
+                  </div>
+                  <span className="text-[10px] font-black text-brand-orange uppercase tracking-wider bg-brand-orange/10 px-2 py-1 rounded-full">
+                    {review.tag}
+                  </span>
+                </div>
+                <p className="text-text-body text-sm leading-relaxed mb-5">
+                  {review.text}
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-brand-orange/15 to-brand-gold/15 flex items-center justify-center text-brand-orange font-bold text-xs">
+                    {review.name
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")}
+                  </div>
+                  <span className="font-bold text-sm text-text-heading">
+                    {review.name}
+                  </span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
