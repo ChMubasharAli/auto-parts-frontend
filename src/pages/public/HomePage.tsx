@@ -568,10 +568,6 @@ export const HomePage = () => {
                   </div>
 
                   {/* Subtle Interactive Element indicator */}
-                  <div className="pt-4 mt-4 border-t border-border-light/60 flex items-center gap-2 text-xs font-bold text-brand-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <span>View Details</span>
-                    <ArrowRight className="w-3 h-3" />
-                  </div>
                 </div>
               </div>
             ))}
