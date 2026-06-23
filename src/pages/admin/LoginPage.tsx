@@ -69,7 +69,7 @@ export const LoginPage = () => {
             <Input
               label="Email"
               type="email"
-              placeholder="admin@westmaintire.com"
+              placeholder="test@gmail.com"
               error={errors.email?.message}
               {...register("email")}
             />

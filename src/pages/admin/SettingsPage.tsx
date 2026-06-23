@@ -19,6 +19,7 @@ import {
 } from "../../components/ui/Card";
 import { Badge } from "../../components/ui/Badge";
 import { Store, User, Lock, Save } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const profileSchema = z.object({
   name: z.string().min(1, "Name is required").max(100),
@@ -41,7 +42,8 @@ type PasswordForm = z.infer<typeof passwordSchema>;
 
 export const SettingsPage = () => {
   const { showToast } = useToast();
-  const { admin } = useAuthContext();
+  const { admin, logout } = useAuthContext();
+  const navigate = useNavigate();
 
   const { data: shopSettings, isLoading: settingsLoading } = useShopSettings();
   const updateShopSettings = useUpdateShopSettings();
@@ -84,17 +86,17 @@ export const SettingsPage = () => {
     }
   };
 
-  const handleUpdateProfile = async (data: ProfileForm) => {
-    try {
-      await updateProfile.mutateAsync(data);
-      showToast("Profile updated successfully", "success");
-    } catch (error: any) {
-      showToast(
-        error?.response?.data?.message || "Failed to update profile",
-        "error",
-      );
-    }
-  };
+  // const handleUpdateProfile = async (data: ProfileForm) => {
+  //   try {
+  //     await updateProfile.mutateAsync(data);
+  //     showToast("Profile updated successfully", "success");
+  //   } catch (error: any) {
+  //     showToast(
+  //       error?.response?.data?.message || "Failed to update profile",
+  //       "error",
+  //     );
+  //   }
+  // };
 
   const handleChangePassword = async (data: PasswordForm) => {
     try {
@@ -105,6 +107,8 @@ export const SettingsPage = () => {
       });
       showToast("Password changed successfully", "success");
       passwordForm.reset();
+      logout();
+      navigate("/");
     } catch (error: any) {
       showToast(
         error?.response?.data?.message || "Failed to change password",
@@ -203,7 +207,7 @@ export const SettingsPage = () => {
       </Card>
 
       {/* Admin Profile */}
-      <Card>
+      {/* <Card>
         <CardHeader>
           <div className="flex items-center gap-2">
             <User className="h-5 w-5 text-[var(--color-muted-foreground)]" />
@@ -238,7 +242,7 @@ export const SettingsPage = () => {
             </Button>
           </form>
         </CardContent>
-      </Card>
+      </Card> */}
 
       {/* Change Password */}
       <Card>
