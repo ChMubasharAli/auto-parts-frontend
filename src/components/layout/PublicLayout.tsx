@@ -78,7 +78,6 @@ const defaultConfig = pageConfig["/"];
 export const PublicLayout = () => {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
 
   // Track the last non-booking page config to preserve on booking page
   const [lastPageConfig, setLastPageConfig] = useState(defaultConfig);
@@ -119,21 +118,24 @@ export const PublicLayout = () => {
     setIsMobileMenuOpen(false);
   }, [location.pathname]);
 
-  // Handle scroll for header shadow
+  // Lock body scroll when mobile menu is open
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isMobileMenuOpen]);
 
   return (
     <div className="flex min-h-screen flex-col bg-surface-white">
       {/* ==========================================
           TOP BAR — Dynamic per page (preserved on booking)
           ========================================== */}
-      <div className="hidden sm:block bg-brand-navy text-white/90 py-2">
+      <div className="hidden md:block bg-brand-navy text-white/90 py-2">
         <div className="container-custom flex items-center justify-between">
           <div className="flex items-center gap-6 text-xs font-medium">
             <span className="flex items-center gap-1.5">
@@ -155,15 +157,9 @@ export const PublicLayout = () => {
       </div>
 
       {/* ==========================================
-          HEADER — Sticky with Blur Effect (shown on all pages)
+          HEADER — Simple Sticky Navbar
           ========================================== */}
-      <header
-        className={`sticky top-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-border-default"
-            : "bg-white border-b border-border-light"
-        }`}
-      >
+      <header className="sticky top-0 z-50 bg-white border-b border-border-light">
         <div className="container-custom flex h-16 lg:h-20 items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
@@ -178,7 +174,7 @@ export const PublicLayout = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-2">
+          <nav className="hidden md:flex items-center gap-2">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
@@ -197,74 +193,60 @@ export const PublicLayout = () => {
             ))}
           </nav>
 
-          {/* Mobile CTA + Menu Button */}
-          <div className="flex items-center gap-3 lg:hidden">
-            <a href={`tel:${currentConfig.topBar.phone.replace(/\D/g, "")}`}>
-              <Button
-                size="sm"
-                variant="gradient"
-                className="gap-1.5 cursor-pointer"
-              >
-                <Phone className="h-4 w-4" />
-                <span className="hidden xs:inline">Call</span>
-              </Button>
-            </a>
+          {/* Mobile CTA + Animated Menu Button */}
+          <div className="flex items-center  md:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="w-10 h-10 rounded-xl border-2 border-border-default flex items-center justify-center text-text-heading hover:border-brand-orange hover:text-brand-orange transition-all cursor-pointer"
+              className="relative w-10 h-10 rounded-xl border-2 border-border-default flex items-center justify-center text-text-heading hover:border-brand-orange hover:text-brand-orange transition-all cursor-pointer overflow-hidden"
               aria-label="Toggle menu"
             >
-              {isMobileMenuOpen ? (
-                <X className="h-5 w-5" />
-              ) : (
-                <Menu className="h-5 w-5" />
-              )}
+              {/* Animated Hamburger / X Icon */}
+              <div className="relative w-5 h-5">
+                <span
+                  className={`absolute left-0 block w-5 h-0.5 bg-current rounded-full transition-all duration-300 ease-in-out ${
+                    isMobileMenuOpen
+                      ? "top-1/2 -translate-y-1/2 rotate-45"
+                      : "top-1"
+                  }`}
+                />
+                <span
+                  className={`absolute left-0 top-1/2 -translate-y-1/2 block w-5 h-0.5 bg-current rounded-full transition-all duration-300 ease-in-out ${
+                    isMobileMenuOpen
+                      ? "opacity-0 scale-0"
+                      : "opacity-100 scale-100"
+                  }`}
+                />
+                <span
+                  className={`absolute left-0 block w-5 h-0.5 bg-current rounded-full transition-all duration-300 ease-in-out ${
+                    isMobileMenuOpen
+                      ? "top-1/2 -translate-y-1/2 -rotate-45"
+                      : "bottom-1"
+                  }`}
+                />
+              </div>
             </button>
           </div>
         </div>
 
         {/* ==========================================
-            MOBILE NAVIGATION — Full Screen Overlay
+            MOBILE SIDEBAR — Slides from right below header
             ========================================== */}
         <div
-          className={`lg:hidden fixed inset-0 z-40 transition-all duration-300 ${
-            isMobileMenuOpen
-              ? "opacity-100 pointer-events-auto"
-              : "opacity-0 pointer-events-none"
+          className={`lg:hidden fixed right-0 z-40 transition-transform duration-300 ease-out ${
+            isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
           }`}
+          style={{
+            top: "64px",
+            height: "calc(100vh - 64px)",
+            width: "100%",
+          }}
         >
-          {/* Backdrop */}
-          <div
-            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-            onClick={() => setIsMobileMenuOpen(false)}
-          />
+          {/* Backdrop overlay */}
 
-          {/* Menu Panel */}
-          <div
-            className={`absolute top-0 right-0 w-full max-w-sm h-full bg-white shadow-2xl transition-transform duration-300 ${
-              isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
-            }`}
-          >
-            {/* Menu Header */}
-            <div className="flex items-center justify-between p-4 border-b border-border-default">
-              <div className="flex items-center gap-2">
-                <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-brand-orange to-brand-gold flex items-center justify-center">
-                  <Wrench className="h-4 w-4 text-white" />
-                </div>
-                <span className="font-heading font-black text-sm text-text-heading uppercase">
-                  Menu
-                </span>
-              </div>
-              <button
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="w-9 h-9 rounded-lg border border-border-default flex items-center justify-center hover:border-brand-orange transition-colors cursor-pointer"
-              >
-                <X className="h-4 w-4" />
-              </button>
-            </div>
-
+          {/* Sidebar Panel */}
+          <div className="h-full bg-white shadow-2xl flex flex-col overflow-y-auto">
             {/* Menu Links */}
-            <nav className="p-4 space-y-2">
+            <nav className="p-4 space-y-2 flex-1">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
@@ -287,7 +269,7 @@ export const PublicLayout = () => {
             </nav>
 
             {/* Mobile Contact Info */}
-            <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-border-default bg-surface-warm">
+            <div className="p-4 border-t border-border-default bg-surface-warm">
               <div className="space-y-2">
                 <a
                   href={`tel:${currentConfig.topBar.phone.replace(/\D/g, "")}`}
@@ -382,7 +364,7 @@ export const PublicLayout = () => {
                 <Button
                   size="sm"
                   variant="gradient"
-                  className="gap-2 mt-4 w-full sm:w-auto justify-center cursor-pointer text-base px-8"
+                  className="gap-2 mt-4  justify-center cursor-pointer text-base px-8"
                 >
                   Admin
                 </Button>

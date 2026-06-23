@@ -60,13 +60,9 @@ export const LoginPage = () => {
     <div className="flex min-h-screen items-center justify-center bg-[var(--color-muted)]/30 p-4">
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1 text-center">
-          <div className="flex justify-center mb-2">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--color-primary)]">
-              <Wrench className="h-6 w-6 text-[var(--color-primary-foreground)]" />
-            </div>
-          </div>
-          <CardTitle className="text-2xl">West Main Tire & Lube</CardTitle>
-          <CardDescription>Admin Panel</CardDescription>
+          <div className="flex justify-center mb-2"></div>
+          <CardTitle className="text-2xl">Welcome Back!</CardTitle>
+          <CardDescription>Please Login</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -93,7 +89,7 @@ export const LoginPage = () => {
               Sign In
             </Button>
           </form>
-          <div className="mt-4 text-center">
+          {/* <div className="mt-4 text-center">
             <button
               type="button"
               onClick={() => navigate("/admin/forgot-password")}
@@ -101,7 +97,7 @@ export const LoginPage = () => {
             >
               Forgot password?
             </button>
-          </div>
+          </div> */}
         </CardContent>
       </Card>
     </div>

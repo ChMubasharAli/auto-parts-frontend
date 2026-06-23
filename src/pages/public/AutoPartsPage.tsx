@@ -236,7 +236,7 @@ export const AutoPartsPage = () => {
             {products.map((product, i) => (
               <div
                 key={product.name}
-                className="group relative bg-surface-gray rounded-3xl overflow-hidden transition-all duration-500 hover:bg-white hover:shadow-2xl hover:-translate-y-2 flex flex-col cursor-pointer border border-transparent hover:border-border-default"
+                className="group relative bg-brand-gold-light/30 rounded-3xl overflow-hidden transition-all duration-500 hover:brand-gold-light/50 hover:shadow-2xl hover:-translate-y-2 flex flex-col cursor-pointer border border-transparent hover:border-border-default"
               >
                 {/* Image Structure */}
                 <div className="relative h-56 overflow-hidden m-3 rounded-2xl shadow-inner">

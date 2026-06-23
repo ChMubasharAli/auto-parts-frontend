@@ -351,8 +351,8 @@ export const BookingPage = () => {
             </h1>
 
             <p className="text-white/70 text-lg leading-relaxed max-w-lg">
-              Quick, easy, and hassle-free. Complete your booking in just a few
-              clicks.
+              Quick, easy, and hassle free. Complete your booking in just a few
+              clicks
             </p>
           </div>
         </div>
@@ -362,16 +362,16 @@ export const BookingPage = () => {
           STICKY PROGRESS BAR
           ========================================== */}
       <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-border-default shadow-sm">
-        <div className="container-custom py-4">
-          <div className="flex items-center justify-between max-w-3xl mx-auto">
+        <div className="container-custom py-4 ">
+          <div className="flex items-center justify-between  max-w-3xl mx-auto">
             {[
               { num: 1, label: "Services" },
               { num: 2, label: "Date" },
               { num: 3, label: "Time" },
               { num: 4, label: "Details" },
             ].map((s, i) => (
-              <div key={s.num} className="flex items-center flex-1">
-                <div className="flex flex-col items-center cursor-pointer">
+              <div key={s.num} className="flex items-center flex-1 ">
+                <div className="flex flex-col items-center  cursor-pointer">
                   <div
                     className={`w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold transition-all duration-300 ${
                       step > s.num
@@ -518,7 +518,7 @@ export const BookingPage = () => {
                               {service.name}
                             </h3>
                             <span className="text-[10px] font-bold text-brand-orange tracking-[0.15em] uppercase bg-brand-orange/10 px-2 py-0.5 rounded-full inline-block mb-3">
-                              {service.category || "Service"}
+                              {"Service"}
                             </span>
 
                             <p className="text-xs text-text-muted leading-relaxed mb-4 flex-1 line-clamp-2">
@@ -528,20 +528,24 @@ export const BookingPage = () => {
 
                             {/* Footer */}
                             <div className="pt-3 border-t border-border-default mt-auto">
-                              <div className="flex items-center justify-between">
-                                <div>
-                                  <span className="text-[9px] text-text-muted uppercase tracking-wider font-bold block">
-                                    Price
-                                  </span>
-                                  <span className="text-lg font-black text-brand-orange">
-                                    ${Number(service.price).toFixed(2)}
-                                  </span>
-                                </div>
+                              <div
+                                className={`flex items-center ${service.price ? "justify-between" : "justify-end"}`}
+                              >
+                                {service.price && (
+                                  <div>
+                                    <span className="text-[9px] text-text-muted uppercase tracking-wider font-bold block">
+                                      Price
+                                    </span>
+                                    <span className="text-lg font-black text-brand-orange">
+                                      ${Number(service.price).toFixed(2)}
+                                    </span>
+                                  </div>
+                                )}
                                 <div className="text-right">
                                   <span className="text-[9px] text-text-muted uppercase tracking-wider font-bold block">
-                                    Time
+                                    Duration
                                   </span>
-                                  <span className="text-xs font-bold text-text-heading">
+                                  <span className="text-lg font-black text-brand-orange">
                                     {service.duration} min
                                   </span>
                                 </div>
@@ -591,7 +595,7 @@ export const BookingPage = () => {
 
               {/* Bottom Action Bar */}
               <div
-                className={`fixed bottom-0 left-0 right-0 bg-white border-t border-border-default shadow-[0_-4px_20px_rgba(0,0,0,0.08)] p-4 transition-all duration-300 z-50 ${
+                className={`fixed bottom-0 left-0 right-0 bg-brand-gold-light border-t border-border-default shadow-[0_-4px_20px_rgba(0,0,0,0.08)] p-4 transition-all duration-300 z-50 ${
                   selectedServiceIds.length > 0
                     ? "translate-y-0"
                     : "translate-y-full"
@@ -882,7 +886,6 @@ export const BookingPage = () => {
                       label="Full Name"
                       placeholder="John Doe"
                       error={errors.name?.message}
-                      icon={<User size={18} />}
                       {...register("name")}
                     />
                     <Input
@@ -890,7 +893,6 @@ export const BookingPage = () => {
                       type="email"
                       placeholder="john@example.com"
                       error={errors.email?.message}
-                      icon={<Mail size={18} />}
                       {...register("email")}
                     />
                   </div>
@@ -898,7 +900,6 @@ export const BookingPage = () => {
                     label="Phone"
                     placeholder="(555) 123-4567"
                     error={errors.phone?.message}
-                    icon={<Phone size={18} />}
                     {...register("phone")}
                   />
 

@@ -120,7 +120,7 @@ export const HomePage = () => {
   return (
     <div className="overflow-hidden">
       {/* ==========================================
-          HERO SECTION — Completely New Premium Design
+          HERO SECTION   Completely New Premium Design
           ========================================== */}
       <section className="relative w-full bg-surface-white overflow-hidden">
         {/* Background Decorations */}
@@ -160,19 +160,19 @@ export const HomePage = () => {
                 {/* Description */}
                 <p className="text-base md:text-lg text-text-body/70 font-light leading-relaxed max-w-lg">
                   Serving the Carlisle, KY community since 1955, Dee Jay is more
-                  than just a store—it is a local landmark where community
+                  than just a store. It is a local landmark where community
                   members connect. From auto parts to hardware, plumbing to
                   power equipment, we have everything you need under one roof.
                 </p>
               </div>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 items-start">
+              <div className="flex flex-col md:flex-row gap-4">
                 <Link to="/booking">
                   <Button
                     size="md"
                     variant="gradient"
-                    className="gap-2 w-full sm:w-auto justify-center cursor-pointer text-base px-8 "
+                    className="gap-2 w-full md:w-auto justify-center cursor-pointer text-base px-8 "
                   >
                     <MapPin className="h-5 w-5" />
                     Visit Us Today
@@ -183,7 +183,7 @@ export const HomePage = () => {
                   <Button
                     size="md"
                     variant="outline"
-                    className="w-full sm:w-auto justify-center gap-2 border-2 border-border-default text-text-heading hover:border-brand-orange hover:bg-surface-warm cursor-pointer text-base px-8"
+                    className="w-full md:w-auto justify-center gap-2 border-2 border-border-default text-text-heading hover:border-brand-orange hover:bg-surface-warm cursor-pointer text-base px-8"
                   >
                     <Store className="h-5 w-5" />
                     Browse Our Store
@@ -204,7 +204,7 @@ export const HomePage = () => {
                   />
                 </div>
 
-                {/* Floating Card — Bottom Left Overlap */}
+                {/* Floating Card   Bottom Left Overlap */}
                 <div className="absolute -bottom-8 -left-4 lg:-left-10 z-20 bg-white rounded-2xl p-5 shadow-xl border border-border-light/50 w-60">
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 rounded-full bg-brand-orange/10 flex items-center justify-center text-brand-orange border-2 border-brand-orange/20">
@@ -221,7 +221,7 @@ export const HomePage = () => {
                   </div>
                 </div>
 
-                {/* Circular Badge — Center Right */}
+                {/* Circular Badge   Center Right */}
                 <div className="absolute top-1/2 -right-6 lg:-right-14 z-20 hidden sm:block">
                   <div className="relative w-24 h-24 lg:w-28 lg:h-28">
                     <div className="absolute inset-0 border-2 border-dashed border-brand-orange/30 rounded-full animate-[spin_30s_linear_infinite]" />
@@ -257,7 +257,7 @@ export const HomePage = () => {
       </section>
 
       {/* ==========================================
-          STATS STRIP — Sleek Minimal Ticker
+          STATS STRIP   Sleek Minimal Ticker
           ========================================== */}
       <section className="py-12 bg-surface-warm border-y border-border-light">
         <div className="container-custom">
@@ -292,7 +292,7 @@ export const HomePage = () => {
       </section>
 
       {/* ==========================================
-          POPULAR SERVICES — Dynamic from useServices Hook
+          POPULAR SERVICES   Dynamic from useServices Hook
           ========================================== */}
       <section className="py-24 lg:py-32 bg-white">
         <div className="container-custom">
@@ -392,7 +392,10 @@ export const HomePage = () => {
 
           <div className="mt-12 text-center">
             <Link to="/booking">
-              <Button variant="outline" className="gap-2 cursor-pointer">
+              <Button
+                variant="outline"
+                className="gap-2 cursor-pointer w-full sm:w-auto"
+              >
                 View All Services
                 <ArrowRight className="h-4 w-4" />
               </Button>
@@ -402,9 +405,9 @@ export const HomePage = () => {
       </section>
 
       {/* ==========================================
-          PRODUCT SHOWCASE — Asymmetric Mosaic Grid
+          PRODUCT SHOWCASE   Asymmetric Mosaic Grid
           ========================================== */}
-      <section className="py-24 lg:py-32 bg-surface-warm">
+      <section className=" lg:py-32 bg-surface-warm">
         <div className="container-custom">
           <div className="max-w-2xl mb-16 lg:mb-20">
             <div className="flex items-center gap-2 mb-4">
@@ -418,7 +421,7 @@ export const HomePage = () => {
               <span className="text-gradient">All in One Place</span>
             </h2>
             <p className="text-text-body text-lg leading-relaxed">
-              From auto parts to power equipment, hardware to pet feed—we are
+              From auto parts to power equipment, hardware to pet feed, we are
               your true one-stop shop. No need to drive out of town.
             </p>
           </div>
@@ -530,7 +533,7 @@ export const HomePage = () => {
       </section>
 
       {/* ==========================================
-          WHY CHOOSE US — Zigzag Editorial Layout
+          WHY CHOOSE US   Zigzag Editorial Layout
           ========================================== */}
       {/* <section className="py-24 lg:py-32 bg-surface-white relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-orange/5 rounded-full blur-3xl pointer-events-none -translate-y-1/2 translate-x-1/4" />
@@ -617,7 +620,7 @@ export const HomePage = () => {
       </section> */}
 
       {/* ==========================================
-          TESTIMONIALS — Masonry Board Style
+          TESTIMONIALS   Masonry Board Style
           ========================================== */}
       <section className="py-24 lg:py-32 bg-surface-warm">
         <div className="container-custom">
@@ -633,8 +636,8 @@ export const HomePage = () => {
               Trusted by <span className="text-gradient">Generations</span>
             </h2>
             <p className="text-text-body text-lg leading-relaxed">
-              For over 70 years, we have been more than a store—we are where the
-              community connects.
+              For over 70 years, we have been more than a store, we are where
+              the community connects
             </p>
           </div>
 
@@ -653,9 +656,9 @@ export const HomePage = () => {
                 ))}
               </div>
               <blockquote className="text-text-heading text-lg font-medium leading-relaxed mb-8 relative z-10">
-                "Dee Jay has been our family&apos;s go-to for three generations.
+                "Dee Jay has been our family&apos;s go to for three generations.
                 Whether it is auto parts for the truck, feed for the horses, or
-                just catching up with neighbors—they are Carlisle&apos;s living
+                just catching up with neighbors they are Carlisle&apos;s living
                 room."
               </blockquote>
               <div className="flex items-center gap-4">
@@ -676,12 +679,12 @@ export const HomePage = () => {
             {[
               {
                 name: "Sarah Mitchell",
-                text: "I needed a hydraulic hose fixed for my tractor on a Friday afternoon. They had it done in under an hour—saved my entire weekend.",
+                text: "I needed a hydraulic hose fixed for my tractor on a Friday afternoon. They had it done in under an hour saved my entire weekend.",
                 tag: "Hydraulic Repair",
               },
               {
                 name: "Mike Torres",
-                text: "Been coming here for 15 years for everything—auto parts, hardware, and now feed for my dogs. The team knows me by name.",
+                text: "Been coming here for 15 years for everything auto parts, hardware, and now feed for my dogs. The team knows me by name.",
                 tag: "Loyal Customer",
               },
               {
@@ -691,7 +694,7 @@ export const HomePage = () => {
               },
               {
                 name: "James Wright",
-                text: "When our water heater went out, I thought I would have to drive to Lexington. Nope—Dee Jay had exactly what I needed.",
+                text: "When our water heater went out, I thought I would have to drive to Lexington. Nope Dee Jay had exactly what I needed.",
                 tag: "Plumbing Supplies",
               },
             ].map((review, i) => (
@@ -734,7 +737,7 @@ export const HomePage = () => {
       </section>
 
       {/* ==========================================
-          CONTACT — Full-bleed with Floating Cards
+          CONTACT   Full-bleed with Floating Cards
           ========================================== */}
       <section className="relative py-24 lg:py-32 overflow-hidden">
         <div className="absolute inset-0">
@@ -841,7 +844,7 @@ export const HomePage = () => {
       </section>
 
       {/* ==========================================
-          FINAL CTA — Premium Card Design
+          FINAL CTA   Premium Card Design
           ========================================== */}
       <section className="relative py-24 lg:py-32 bg-surface-white overflow-hidden">
         <div className="absolute inset-0 opacity-50">
@@ -877,7 +880,7 @@ export const HomePage = () => {
                   </h2>
 
                   <p className="text-text-body text-lg leading-relaxed max-w-lg">
-                    From auto parts to hardware, hydraulic hoses to pet feed— we
+                    From auto parts to hardware, hydraulic hoses to pet feed we
                     are your one-stop shop. Stop by and see why Carlisle has
                     trusted us for over 70 years.
                   </p>
@@ -887,7 +890,7 @@ export const HomePage = () => {
                       <Button
                         size="md"
                         variant="gradient"
-                        className="gap-2 cursor-pointer"
+                        className="gap-2 w-full sm:w-auto cursor-pointer"
                       >
                         <MapPin className="h-5 w-5" />
                         Visit Us Today
@@ -898,7 +901,7 @@ export const HomePage = () => {
                       <Button
                         size="md"
                         variant="outline"
-                        className="gap-2 border-2 border-border-default text-text-heading hover:border-brand-orange hover:bg-surface-warm cursor-pointer"
+                        className="gap-2 border-2 w-full sm:w-auto border-border-default text-text-heading hover:border-brand-orange hover:bg-surface-warm cursor-pointer"
                       >
                         <Store className="h-5 w-5" />
                         Browse Parts
