@@ -92,19 +92,26 @@ export const PublicLayout = () => {
   }, [location.pathname]);
 
   // Determine which config to use:
+  // - If on booking page, force West Main config
   // - If on a known page (home or auto-parts), use that page's config
-  // - If on booking (or any other unknown page), use the last preserved config
-  const currentConfig = pageConfig[location.pathname] || lastPageConfig;
+  // - If on any other unknown page, use the last preserved config
+  const currentConfig =
+    location.pathname === "/booking"
+      ? pageConfig["/auto-parts"]
+      : pageConfig[location.pathname] || lastPageConfig;
 
-  // Determine logo text based on current or last known page
+  // Determine logo text based on current page
   const getLogoText = () => {
+    if (location.pathname === "/booking") {
+      return { main: "West Main", sub: "Tire & Lube" };
+    }
     if (location.pathname === "/auto-parts") {
       return { main: "West Main", sub: "Tire & Lube" };
     }
     if (location.pathname === "/") {
       return { main: "Dee Jay", sub: "Auto Parts & Hardware" };
     }
-    // For booking or any other page, use last known page's logo
+    // For any other page, use last known page's logo
     if (lastPageConfig.footer.brandName === "West Main") {
       return { main: "West Main", sub: "Tire & Lube" };
     }

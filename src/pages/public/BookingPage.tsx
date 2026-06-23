@@ -1,3 +1,4 @@
+import React from "react";
 import { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -362,46 +363,55 @@ export const BookingPage = () => {
           STICKY PROGRESS BAR
           ========================================== */}
       <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-border-default shadow-sm">
-        <div className="container-custom py-4 ">
-          <div className="flex items-center justify-between  max-w-3xl mx-auto">
-            {[
-              { num: 1, label: "Services" },
-              { num: 2, label: "Date" },
-              { num: 3, label: "Time" },
-              { num: 4, label: "Details" },
-            ].map((s, i) => (
-              <div key={s.num} className="flex items-center flex-1 ">
-                <div className="flex flex-col items-center  cursor-pointer">
-                  <div
-                    className={`w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold transition-all duration-300 ${
-                      step > s.num
-                        ? "bg-brand-orange text-white"
-                        : step === s.num
-                          ? "bg-brand-orange text-white ring-4 ring-brand-orange/20"
-                          : "bg-surface-warm text-text-muted"
-                    }`}
-                  >
-                    {step > s.num ? <Check size={18} strokeWidth={3} /> : s.num}
-                  </div>
-                  <span
-                    className={`text-[10px] font-bold uppercase tracking-wider mt-1.5 hidden sm:block ${
-                      step >= s.num ? "text-brand-orange" : "text-text-muted"
-                    }`}
-                  >
-                    {s.label}
-                  </span>
-                </div>
-                {i < 3 && (
-                  <div className="flex-1 h-[3px] mx-2 relative bg-border-default rounded-full overflow-hidden">
+        <div className="container-custom py-4">
+          <div className="max-w-3xl mx-auto">
+            <div className="flex items-center justify-center">
+              {[
+                { num: 1, label: "Services" },
+                { num: 2, label: "Date" },
+                { num: 3, label: "Time" },
+                { num: 4, label: "Details" },
+              ].map((s, i) => (
+                <React.Fragment key={s.num}>
+                  {/* Step Circle + Label */}
+                  <div className="flex flex-col items-center cursor-pointer shrink-0">
                     <div
-                      className={`absolute top-0 left-0 h-full bg-gradient-to-r from-brand-orange to-brand-gold rounded-full transition-all duration-500 ${
-                        step > s.num ? "w-full" : "w-0"
+                      className={`w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold transition-all duration-300 ${
+                        step > s.num
+                          ? "bg-brand-orange text-white"
+                          : step === s.num
+                            ? "bg-brand-orange text-white ring-4 ring-brand-orange/20"
+                            : "bg-surface-warm text-text-muted"
                       }`}
-                    />
+                    >
+                      {step > s.num ? (
+                        <Check size={18} strokeWidth={3} />
+                      ) : (
+                        s.num
+                      )}
+                    </div>
+                    <span
+                      className={`text-[10px] font-bold uppercase tracking-wider mt-1.5 hidden sm:block ${
+                        step >= s.num ? "text-brand-orange" : "text-text-muted"
+                      }`}
+                    >
+                      {s.label}
+                    </span>
                   </div>
-                )}
-              </div>
-            ))}
+
+                  {/* Connecting Line (except after last step) */}
+                  {i < 3 && (
+                    <div className="flex-1 h-[3px] mx-2 relative bg-border-default rounded-full overflow-hidden">
+                      <div
+                        className={`absolute top-0 left-0 h-full bg-gradient-to-r from-brand-orange to-brand-gold rounded-full transition-all duration-500 ${
+                          step > s.num ? "w-full" : "w-0"
+                        }`}
+                      />
+                    </div>
+                  )}
+                </React.Fragment>
+              ))}
+            </div>
           </div>
         </div>
       </div>
