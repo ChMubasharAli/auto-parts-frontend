@@ -32,12 +32,17 @@ import { Wrench, Plus, Pencil, Trash2, Power, PowerOff } from "lucide-react";
 
 const serviceSchema = z.object({
   name: z.string().min(1, "Service name is required").max(100),
+  description: z.string().max(500).optional().or(z.literal("")),
   duration: z.coerce
     .number()
     .int()
     .min(1, "Minimum 1 minute")
     .max(480, "Max 8 hours"),
-  price: z.coerce.number().min(0, "Price cannot be negative"),
+  price: z.coerce
+    .number()
+    .min(0, "Price cannot be negative")
+    .optional()
+    .or(z.literal("")),
   isActive: z.boolean().default(true),
 });
 
@@ -65,34 +70,48 @@ export const ServicesPage = () => {
     resolver: zodResolver(serviceSchema),
     defaultValues: {
       name: "",
+      description: "",
       duration: 30,
-      price: 0,
+      price: "" as any,
       isActive: true,
     },
   });
 
   const openCreateModal = () => {
     setEditingService(null);
-    reset({ name: "", duration: 30, price: 0, isActive: true });
+    reset({
+      name: "",
+      description: "",
+      duration: 30,
+      price: "" as any,
+      isActive: true,
+    });
     setIsModalOpen(true);
   };
 
   const openEditModal = (service: any) => {
     setEditingService(service.id);
     setValue("name", service.name);
+    setValue("description", service.description || "");
     setValue("duration", service.duration);
-    setValue("price", Number(service.price));
+    setValue("price", service.price ? Number(service.price) : ("" as any));
     setValue("isActive", service.isActive);
     setIsModalOpen(true);
   };
 
   const onSubmit = async (data: ServiceFormData) => {
     try {
+      const payload = {
+        ...data,
+        description: data.description || null,
+        price: data.price ? Number(data.price) : null,
+      };
+
       if (editingService) {
-        await updateMutation.mutateAsync({ id: editingService, data });
+        await updateMutation.mutateAsync({ id: editingService, data: payload });
         showToast("Service updated successfully", "success");
       } else {
-        await createMutation.mutateAsync(data);
+        await createMutation.mutateAsync(payload);
         showToast("Service created successfully", "success");
       }
       setIsModalOpen(false);
@@ -167,6 +186,7 @@ export const ServicesPage = () => {
               <TableHeader>
                 <TableRow>
                   <TableHead>Name</TableHead>
+                  <TableHead>Description</TableHead>
                   <TableHead>Duration</TableHead>
                   <TableHead>Price</TableHead>
                   <TableHead>Status</TableHead>
@@ -182,8 +202,15 @@ export const ServicesPage = () => {
                         {service.name}
                       </div>
                     </TableCell>
+                    <TableCell className="max-w-[200px] truncate text-[var(--color-muted-foreground)]">
+                      {service.description || "—"}
+                    </TableCell>
                     <TableCell>{service.duration} min</TableCell>
-                    <TableCell>${Number(service.price).toFixed(2)}</TableCell>
+                    <TableCell>
+                      {service.price
+                        ? `$${Number(service.price).toFixed(2)}`
+                        : "—"}
+                    </TableCell>
                     <TableCell>
                       <Badge
                         variant={service.isActive ? "success" : "secondary"}
@@ -242,6 +269,12 @@ export const ServicesPage = () => {
             error={errors.name?.message}
             {...register("name")}
           />
+          <Input
+            label="Description (optional)"
+            placeholder="Brief description of the service..."
+            error={errors.description?.message}
+            {...register("description")}
+          />
           <div className="grid grid-cols-2 gap-4">
             <Input
               label="Duration (minutes)"
@@ -251,7 +284,7 @@ export const ServicesPage = () => {
               {...register("duration")}
             />
             <Input
-              label="Price ($)"
+              label="Price ($) - Optional"
               type="number"
               step="0.01"
               placeholder="0.00"

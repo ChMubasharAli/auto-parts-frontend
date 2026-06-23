@@ -15,7 +15,8 @@ export interface Service {
   id: string;
   name: string;
   duration: number;
-  price: number;
+  price?: number | null;
+  description?: string | null;
   isActive: boolean;
   createdAt: string;
   updatedAt: string;

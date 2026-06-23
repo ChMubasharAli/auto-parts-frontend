@@ -72,8 +72,7 @@ const productCategories = [
     description:
       "Exclusive AutoValue dealer. Quality parts for every make and model.",
     highlight: "AutoValue",
-    image:
-      "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=800&auto=format&fit=crop",
+    image: "/images/IMG-6950.webp",
   },
   {
     name: "Hardware & Plumbing",
@@ -81,8 +80,7 @@ const productCategories = [
     description:
       "Household hardware, plumbing supplies, hot water heaters & faucets.",
     highlight: "Projects",
-    image:
-      "https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=800&auto=format&fit=crop",
+    image: "/images/IMG-6944.webp",
   },
   {
     name: "Hydraulic Hoses",
@@ -90,8 +88,7 @@ const productCategories = [
     description:
       "Custom fabrication and repairs. No need to drive out of town.",
     highlight: "Custom",
-    image:
-      "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=800&auto=format&fit=crop",
+    image: "/images/West-Main-Open-Bay.webp",
   },
   {
     name: "Echo Power Equipment",
@@ -99,16 +96,14 @@ const productCategories = [
     description:
       "Weed eaters, blowers, mowers, and chainsaws. Exclusive Echo dealer.",
     highlight: "Echo",
-    image:
-      "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=800&auto=format&fit=crop",
+    image: "/images/IMG-6945.webp",
   },
   {
     name: "Pet & Livestock Feed",
     icon: Dog,
     description: "Quality feed for your livestock and domestic pets.",
     highlight: "Feed",
-    image:
-      "https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=800&auto=format&fit=crop",
+    image: "/images/IMG-7273.webp",
   },
 ];
 
@@ -336,7 +331,7 @@ export const HomePage = () => {
                 .map((service, i) => (
                   <div
                     key={service.id}
-                    className="group relative bg-white border-2 border-border-default p-7 transition-all duration-500 hover:border-brand-orange hover:shadow-lg flex flex-col overflow-hidden rounded-[28px_12px]"
+                    className="group relative bg-white border-2 border-border-default p-7 transition-all duration-500 hover:border-brand-orange hover:shadow-lg flex flex-col overflow-hidden rounded-[28px_28px]"
                   >
                     <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-orange to-brand-gold transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
 
@@ -353,7 +348,7 @@ export const HomePage = () => {
 
                     <div className="space-y-3 flex-1">
                       <span className="inline-block text-[10px] font-black text-brand-orange tracking-[0.2em] uppercase bg-brand-orange/10 px-3 py-1 rounded-full border border-brand-orange/20">
-                        {service.category || "Service"}
+                        {"Service"}
                       </span>
 
                       <h3 className="font-heading font-black text-lg text-text-heading uppercase tracking-wide group-hover:text-brand-orange transition-colors duration-300">
@@ -361,7 +356,7 @@ export const HomePage = () => {
                       </h3>
 
                       <p className="text-sm text-text-body font-medium leading-relaxed line-clamp-3">
-                        {service.description ||
+                        {service?.description ||
                           "Professional service by certified technicians with quality guarantee."}
                       </p>
                     </div>
@@ -383,10 +378,13 @@ export const HomePage = () => {
                       </div>
                     </div>
 
-                    <div className="mt-4 flex items-center gap-1.5 text-brand-orange text-[10px] font-black uppercase tracking-widest transition-all duration-500 opacity-0 transform translate-x-[-10px] group-hover:opacity-100 group-hover:translate-x-0 cursor-pointer">
+                    <Link
+                      to={"/booking"}
+                      className="mt-4 flex items-center gap-1.5 text-brand-orange text-[10px] font-black uppercase tracking-widest transition-all duration-500 opacity-0 transform translate-x-[-10px] group-hover:opacity-100 group-hover:translate-x-0 cursor-pointer"
+                    >
                       <span>View Details</span>
                       <ArrowRight size={12} strokeWidth={3} />
-                    </div>
+                    </Link>
                   </div>
                 ))}
             </div>
@@ -437,9 +435,7 @@ export const HomePage = () => {
                 <div className="w-12 h-12 rounded-xl bg-brand-orange flex items-center justify-center text-white mb-4 shadow-lg">
                   <Car className="h-6 w-6" />
                 </div>
-                <span className="inline-block text-[10px] font-black text-brand-orange tracking-[0.2em] uppercase bg-white/20 px-3 py-1 rounded-full backdrop-blur-sm border border-white/20 mb-3 w-fit">
-                  {productCategories[0].highlight}
-                </span>
+
                 <h3 className="font-heading font-black text-2xl lg:text-3xl text-white uppercase tracking-wide mb-2">
                   {productCategories[0].name}
                 </h3>
@@ -460,9 +456,7 @@ export const HomePage = () => {
                 <div className="w-12 h-12 rounded-xl bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white mb-4">
                   <Hammer className="h-6 w-6" />
                 </div>
-                <span className="inline-block text-[10px] font-black text-brand-orange tracking-[0.2em] uppercase bg-brand-orange/20 px-3 py-1 rounded-full border border-brand-orange/30 mb-3 w-fit">
-                  {productCategories[1].highlight}
-                </span>
+
                 <h3 className="font-heading font-black text-2xl text-white uppercase tracking-wide mb-2">
                   {productCategories[1].name}
                 </h3>
@@ -538,7 +532,7 @@ export const HomePage = () => {
       {/* ==========================================
           WHY CHOOSE US — Zigzag Editorial Layout
           ========================================== */}
-      <section className="py-24 lg:py-32 bg-surface-white relative overflow-hidden">
+      {/* <section className="py-24 lg:py-32 bg-surface-white relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-orange/5 rounded-full blur-3xl pointer-events-none -translate-y-1/2 translate-x-1/4" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-gold/5 rounded-full blur-3xl pointer-events-none translate-y-1/2 -translate-x-1/4" />
 
@@ -620,7 +614,7 @@ export const HomePage = () => {
             })}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ==========================================
           TESTIMONIALS — Masonry Board Style
@@ -936,7 +930,7 @@ export const HomePage = () => {
 
                 <div className="lg:col-span-2 relative min-h-[300px] lg:min-h-0">
                   <img
-                    src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=800&auto=format&fit=crop"
+                    src="/images/IMG-6941.webp"
                     alt="Dee Jay Store"
                     className="absolute inset-0 w-full h-full object-cover"
                   />

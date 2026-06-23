@@ -15,7 +15,8 @@ export const serviceApi = {
   create: async (data: {
     name: string;
     duration: number;
-    price: number;
+    description?: string | null;
+    price?: number | null;
     isActive?: boolean;
   }) => {
     const response = await api.post<ApiResponse<Service>>("/services", data);

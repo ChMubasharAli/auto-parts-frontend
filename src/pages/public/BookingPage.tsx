@@ -106,6 +106,7 @@ const iconMap: Record<string, React.ReactNode> = {
   "Brake Service": <Settings className="h-6 w-6" />,
   "Engine Diagnostics": <Gauge className="h-6 w-6" />,
   Estimates: <Calculator className="h-6 w-6" />,
+  Other: <Wrench className="h-6 w-6" />,
 };
 
 export const BookingPage = () => {
@@ -549,6 +550,43 @@ export const BookingPage = () => {
                           </button>
                         );
                       })}
+
+                {/* ==========================================
+                    STATIC "OTHER" SERVICE CARD
+                    ========================================== */}
+                <div className="group relative bg-white border-2 border-border-default hover:border-brand-orange/50 p-5 text-left transition-all duration-300 hover:shadow-lg flex flex-col overflow-hidden rounded-2xl">
+                  {/* Icon */}
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 bg-surface-warm text-brand-orange group-hover:bg-brand-orange group-hover:text-white">
+                    {iconMap["Other"]}
+                  </div>
+
+                  {/* Content */}
+                  <h3 className="font-bold text-base mb-1 transition-colors text-text-heading group-hover:text-brand-orange">
+                    Other
+                  </h3>
+                  <span className="text-[10px] font-bold text-brand-orange tracking-[0.15em] uppercase bg-brand-orange/10 px-2 py-0.5 rounded-full inline-block mb-3">
+                    Service
+                  </span>
+
+                  <p className="text-xs text-text-muted leading-relaxed mb-4 flex-1 line-clamp-2">
+                    Don't see what you're looking for? Give us a call and we'll
+                    take care of you.
+                  </p>
+
+                  {/* Footer with Call Button */}
+                  <div className="pt-3 border-t border-border-default mt-auto">
+                    <a href={`tel:+18592892208`}>
+                      <Button
+                        size="md"
+                        variant="gradient"
+                        className="gap-2 w-full justify-center cursor-pointer text-base  "
+                      >
+                        <Phone className="h-5 w-5" />
+                        Call To Schedule
+                      </Button>
+                    </a>
+                  </div>
+                </div>
               </div>
 
               {/* Bottom Action Bar */}
