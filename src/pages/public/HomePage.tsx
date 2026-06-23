@@ -246,7 +246,11 @@ export const HomePage = () => {
 
               {/* CTA Buttons */}
               <div className="flex flex-col md:flex-row gap-4">
-                <a href="tel:8592892208">
+                <a
+                  href="https://maps.google.com/?q=328+W+Main+St+Carlisle+KY+40311"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Button
                     size="md"
                     variant="gradient"
@@ -809,7 +813,11 @@ export const HomePage = () => {
                   </p>
 
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <a href="tel:8592892208">
+                    <a
+                      href="https://maps.google.com/?q=328+W+Main+St+Carlisle+KY+40311"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <Button
                         size="md"
                         variant="gradient"
