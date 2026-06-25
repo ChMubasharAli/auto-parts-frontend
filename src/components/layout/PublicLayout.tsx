@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Wrench,
   Menu,
@@ -125,16 +125,26 @@ export const PublicLayout = () => {
     setIsMobileMenuOpen(false);
   }, [location.pathname]);
 
-  // Lock body scroll when mobile menu is open
+  // Lock body scroll when mobile menu is open - Simple and cross-browser compatible
   useEffect(() => {
+    const body = document.body;
+
     if (isMobileMenuOpen) {
-      document.body.style.overflow = "hidden";
+      // Simple approach: prevent touch events on the body when menu is open
+      const preventDefault = (e: TouchEvent) => {
+        e.preventDefault();
+      };
+
+      body.addEventListener("touchmove", preventDefault, { passive: false });
+      body.style.overflow = "hidden";
+
+      return () => {
+        body.removeEventListener("touchmove", preventDefault);
+        body.style.overflow = "";
+      };
     } else {
-      document.body.style.overflow = "";
+      body.style.overflow = "";
     }
-    return () => {
-      document.body.style.overflow = "";
-    };
   }, [isMobileMenuOpen]);
 
   return (
@@ -238,75 +248,77 @@ export const PublicLayout = () => {
         {/* ==========================================
             MOBILE SIDEBAR — Slides from right below header
             ========================================== */}
-        <div
-          className={`lg:hidden fixed right-0 z-40 h-[calc(100dvh-64px)] w-full transition-transform duration-300 ease-out ${
-            isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
-          }`}
-        >
-          {/* Backdrop overlay */}
+        {isMobileMenuOpen && (
+          <div className="lg:hidden fixed inset-0 z-40" style={{ top: "64px" }}>
+            {/* Backdrop overlay */}
+            <div
+              className="absolute inset-0 bg-black/40"
+              onClick={() => setIsMobileMenuOpen(false)}
+            />
 
-          {/* Sidebar Panel */}
-          <div className="h-full bg-white shadow-2xl flex flex-col overflow-y-auto">
-            {/* Menu Links */}
-            <nav className="p-4 space-y-2 flex-1">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={`flex items-center justify-between p-4 rounded-2xl font-bold uppercase tracking-wider text-sm transition-all ${
-                    isActive(link.path)
-                      ? "bg-brand-orange text-white shadow-md"
-                      : "bg-surface-warm text-text-heading hover:bg-surface-gray"
-                  }`}
-                >
-                  <span>{link.label}</span>
-                  <ChevronRight
-                    className={`h-4 w-4 transition-transform ${
-                      isActive(link.path) ? "text-white" : "text-text-muted"
+            {/* Sidebar Panel */}
+            <div className="absolute right-0 top-0 h-full w-full bg-white shadow-2xl flex flex-col overflow-y-auto animate-slide-in">
+              {/* Menu Links */}
+              <nav className="p-4 space-y-2 flex-1">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`flex items-center justify-between p-4 rounded-2xl font-bold uppercase tracking-wider text-sm transition-all ${
+                      isActive(link.path)
+                        ? "bg-brand-orange text-white shadow-md"
+                        : "bg-surface-warm text-text-heading hover:bg-surface-gray"
                     }`}
-                  />
-                </Link>
-              ))}
-            </nav>
+                  >
+                    <span>{link.label}</span>
+                    <ChevronRight
+                      className={`h-4 w-4 transition-transform ${
+                        isActive(link.path) ? "text-white" : "text-text-muted"
+                      }`}
+                    />
+                  </Link>
+                ))}
+              </nav>
 
-            {/* Mobile Contact Info */}
-            <div className="p-4 border-t border-border-default bg-surface-warm">
-              <div className="space-y-2">
-                <a
-                  href={`tel:${currentConfig.topBar.phone.replace(/\D/g, "")}`}
-                  className="flex items-center gap-3 p-3 rounded-xl bg-white border border-border-default hover:border-brand-orange transition-all cursor-pointer"
-                >
-                  <div className="w-9 h-9 rounded-lg bg-brand-orange/10 flex items-center justify-center">
-                    <Phone className="h-4 w-4 text-brand-orange" />
-                  </div>
-                  <div>
-                    <div className="text-[10px] font-black text-text-muted uppercase tracking-wider">
-                      Call Us
+              {/* Mobile Contact Info */}
+              <div className="p-4 border-t border-border-default bg-surface-warm">
+                <div className="space-y-2">
+                  <a
+                    href={`tel:${currentConfig.topBar.phone.replace(/\D/g, "")}`}
+                    className="flex items-center gap-3 p-3 rounded-xl bg-white border border-border-default hover:border-brand-orange transition-all cursor-pointer"
+                  >
+                    <div className="w-9 h-9 rounded-lg bg-brand-orange/10 flex items-center justify-center">
+                      <Phone className="h-4 w-4 text-brand-orange" />
                     </div>
-                    <div className="text-sm font-bold text-text-heading">
-                      {currentConfig.topBar.phone}
+                    <div>
+                      <div className="text-[10px] font-black text-text-muted uppercase tracking-wider">
+                        Call Us
+                      </div>
+                      <div className="text-sm font-bold text-text-heading">
+                        {currentConfig.topBar.phone}
+                      </div>
                     </div>
-                  </div>
-                </a>
+                  </a>
 
-                <div className="flex items-center gap-3 p-3 rounded-xl bg-white border border-border-default">
-                  <div className="w-9 h-9 rounded-lg bg-brand-orange/10 flex items-center justify-center">
-                    <Clock className="h-4 w-4 text-brand-orange" />
-                  </div>
-                  <div>
-                    <div className="text-[10px] font-black text-text-muted uppercase tracking-wider">
-                      Hours
+                  <div className="flex items-center gap-3 p-3 rounded-xl bg-white border border-border-default">
+                    <div className="w-9 h-9 rounded-lg bg-brand-orange/10 flex items-center justify-center">
+                      <Clock className="h-4 w-4 text-brand-orange" />
                     </div>
-                    <div className="text-xs font-bold text-text-heading">
-                      {currentConfig.topBar.hours}
+                    <div>
+                      <div className="text-[10px] font-black text-text-muted uppercase tracking-wider">
+                        Hours
+                      </div>
+                      <div className="text-xs font-bold text-text-heading">
+                        {currentConfig.topBar.hours}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
       </header>
 
       {/* ==========================================
