@@ -968,25 +968,25 @@ export const BookingPage = () => {
                     </div>
                     <div className="grid sm:grid-cols-2 gap-3 text-sm">
                       <div className="flex justify-between sm:block">
-                        <span className="text-text-muted">Date</span>
+                        <span className="text-text-muted">Date </span>
                         <span className="font-bold text-text-heading">
                           {selectedDate}
                         </span>
                       </div>
                       <div className="flex justify-between sm:block">
-                        <span className="text-text-muted">Time</span>
+                        <span className="text-text-muted">Time </span>
                         <span className="font-bold text-text-heading">
                           {selectedTime}
                         </span>
                       </div>
                       <div className="flex justify-between sm:block">
-                        <span className="text-text-muted">Duration</span>
+                        <span className="text-text-muted">Duration </span>
                         <span className="font-bold text-text-heading">
                           {totalDuration} min
                         </span>
                       </div>
                       <div className="flex justify-between sm:block">
-                        <span className="text-text-muted">Services</span>
+                        <span className="text-text-muted">Services </span>
                         <span className="font-bold text-text-heading">
                           {selectedServices.length}
                         </span>

@@ -280,7 +280,7 @@ export const HomePage = () => {
                 {/* Main Large Image */}
                 <div className="relative z-10 rounded-[36px] overflow-hidden shadow-2xl shadow-brand-navy/10 aspect-[4/3] border border-border-light">
                   <img
-                    src="/images/Dee-Jay-Auto-External.webp"
+                    src="/images/IMG-6941.webp "
                     alt="Dee Jay Auto Parts & Hardware Storefront"
                     className="w-full h-full object-cover"
                   />
@@ -864,11 +864,10 @@ export const HomePage = () => {
 
                 <div className="lg:col-span-2 relative min-h-[300px] lg:min-h-0">
                   <img
-                    src="/images/IMG-6941.webp"
+                    src="/images/Dee-Jay-Auto-External.webp"
                     alt="Dee Jay Store"
                     className="absolute inset-0 w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-r from-white via-white/20 to-transparent lg:from-white/60" />
                 </div>
               </div>
             </div>
